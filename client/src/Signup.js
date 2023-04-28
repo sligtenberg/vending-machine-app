@@ -11,6 +11,8 @@ function Signup() {
 
             <lable for="email">Email: </lable>
             <input type="text" id="email" />
+
+            <input type="submit"/>
         </form>
     )
 }
