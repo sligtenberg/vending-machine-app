@@ -4,4 +4,8 @@ class UsersController < ApplicationController
         render json: User.all
     end
 
+    def create
+        byebug
+    end
+
 end
