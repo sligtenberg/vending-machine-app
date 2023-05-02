@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login() {
+function Login({ setUser }) {
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -14,6 +14,14 @@ function Login() {
                 password: event.target[1].value
             })
         })
+        .then(res => {
+            if(res.ok){
+                console.log("here")
+                res.json().then(setUser)
+            } else {
+                res.json().then(console.log("error"))
+            }
+        })    
     }
     return (
         <form onSubmit={handleSubmit}>

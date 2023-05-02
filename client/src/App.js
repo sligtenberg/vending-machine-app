@@ -4,9 +4,9 @@ import Welcome from "./Welcome";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <h1>
         Stevo's Vending Machine App
-      </header>
+      </h1>
       <Welcome />
     </div>
   );

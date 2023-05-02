@@ -8,26 +8,33 @@ function Welcome() {
 
     useEffect(() => {
         fetch("/me").then(response => {
-          if (response.ok) {
-            response.json().then(user => setUser(user));
-          }
+            if (response.ok) {
+              response.json().then(setUser);
+            }
         });
     }, []);
-    
-    console.log(user)
-    
+
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(() => setUser(null));      
+    }
+
     if (user) {
         return (
-            <h2>Welcome, {user.username}!</h2>
+            <h2>
+                Welcome, {user.username}!
+                <button onClick={handleLogout}>Logout</button>
+            </h2>
         )
     } else {
         return (
-            <div>
+            <h2>
                 Login <input type="radio" id="login" name="loginModeToggle" value="true" defaultChecked onClick={() => setLoginMode(true)}/>
                 Signup <input type="radio" id="signup" name="loginModeToggle" value="false" onClick={() => setLoginMode(false)}/>
 
-                {loginMode ? <Login /> : <Signup />}
-            </div>
+                {loginMode ? <Login setUser={setUser}/> : <Signup setUser={setUser}/>}
+            </h2>
         )
     }
 }

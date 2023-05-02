@@ -1,6 +1,6 @@
 import React from "react";
 
-function Signup() {
+function Signup({ setUser }) {
     function handleSubmit(event) {
         event.preventDefault()
         fetch('/users', {
@@ -13,7 +13,7 @@ function Signup() {
         })
         .then(res => {
             if(res.ok){
-                //res.json().then(setCurrentUser)
+                res.json().then(setUser)
             } else {
                 res.json().then(console.log("error"))
             }
