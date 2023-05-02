@@ -14,6 +14,13 @@ function Signup() {
             headers: {'Content-Type':'applicaition/json'},
             body: JSON.stringify(newUser)
         })
+        .thn(res => {
+            if(res.ok){
+                //res.json().then(setCurrentUser)
+            } else {
+                res.json().then(console.log("error"))
+            }
+        })
     }
 
     return (
