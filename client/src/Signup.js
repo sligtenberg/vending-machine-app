@@ -1,17 +1,15 @@
 import React from "react";
 
 function Signup() {
-    function onSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault()
-        const newUser = {
-            username: event.target[0].value,
-            password: event.target[1].value
-        }
-        console.log(newUser)
         fetch('/users', {
             method: "POST",
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(newUser)
+            body: JSON.stringify({
+                username: event.target[0].value,
+                password: event.target[1].value
+            })
         })
         .then(res => {
             if(res.ok){
@@ -23,7 +21,7 @@ function Signup() {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
             SIGNUP
             Username: <input type="text" id="username" />
             Password: <input type="text" id="password" />
