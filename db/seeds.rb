@@ -12,6 +12,8 @@ users = User.create([
     {username: "Maddie", password: "789"}
 ])
 
-VendingMachine.create(name: "Vending Machine 1", location: "Location 1", user: users.first)
-VendingMachine.create(name: "Vending Machine 2", location: "Location 2", user: users.first)
-VendingMachine.create(name: "Vending Machine 3", location: "Location 3", user: users.second)
+vending_machines = VendingMachine.create([
+    {name: "Vending Machine 1", location: "Location 1", user: users.first},
+    {name: "Vending Machine 2", location: "Location 2", user: users.first},
+    {name: "Vending Machine 3", location: "Location 3", user: users.second}
+])
