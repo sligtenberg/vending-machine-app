@@ -25,10 +25,9 @@ function Login({ setUser }) {
     }
     return (
         <form onSubmit={handleSubmit}>
-            LOGIN
             Username: <input type="text" id="username" />
             Password: <input type="text" id="password" />
-            <input type="submit"/>
+            <input type="submit" value="Log In"/>
         </form>
     )
 }

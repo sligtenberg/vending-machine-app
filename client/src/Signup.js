@@ -22,10 +22,9 @@ function Signup({ setUser }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            SIGNUP
             Username: <input type="text" id="username" />
             Password: <input type="text" id="password" />
-            <input type="submit"/>
+            <input type="submit" value="Create Account"/>
         </form>
     )
 }
