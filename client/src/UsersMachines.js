@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import VendingMachineCardOwner from "./VendingMachineCardOwner";
 
 function UsersMachines({ user }) {
-    const [userVendingMachines, setUserVendingMachines] = useState([])
-    console.log(userVendingMachines)
+    console.log(user.vending_machines)
 
-    useEffect(() => {
-        fetch()
-    }, [])
+    const vendingMachines = user.vending_machines
+        .map(vendingMachine => <VendingMachineCardOwner key={vendingMachine.id} vendingMachine={vendingMachine}/>)
 
     return (
-        <div>UsersMachines</div>
+        <div>{vendingMachines}</div>
     )
 }
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import VendingMachineCard from "./VendingMachineCard";
+import VendingMachineCardCustomer from "./VendingMachineCardCustomer";
 
 function AllMachines() {
     const [vendingMachines, setVendingMachines] = useState([])
-    console.log(vendingMachines)
 
     useEffect(() => {
         fetch('/vending_machines').then(response => {
@@ -14,7 +13,7 @@ function AllMachines() {
     }, [])
 
     const vendingMachineComponents = vendingMachines
-        .map(vendingMachine => <VendingMachineCard key={vendingMachine.id} vendingMachine={vendingMachine}/>)
+        .map(vendingMachine => <VendingMachineCardCustomer key={vendingMachine.id} vendingMachine={vendingMachine}/>)
     
     return (
         <div>{vendingMachineComponents}</div>
