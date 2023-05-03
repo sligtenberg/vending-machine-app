@@ -7,10 +7,25 @@ function Welcome({ setUser }) {
 
     return (
         <h2>
-            Login <input type="radio" id="login" name="loginModeToggle" value="true" defaultChecked onClick={() => setLoginMode(true)}/>
-            Signup <input type="radio" id="signup" name="loginModeToggle" value="false" onClick={() => setLoginMode(false)}/>
+            Login
+                <input
+                    type="radio"
+                    id="login"
+                    name="loginModeToggle"
+                    value="true"
+                    defaultChecked
+                    onClick={() => setLoginMode(true)}/>
+            Signup
+                <input
+                    type="radio"
+                    id="signup"
+                    name="loginModeToggle"
+                    value="false"
+                    onClick={() => setLoginMode(false)}/>
 
-            {loginMode ? <Login setUser={setUser}/> : <Signup setUser={setUser}/>}
+            {loginMode ?
+                <Login setUser={setUser}/> :
+                <Signup setUser={setUser}/>}
         </h2>
     )
 }

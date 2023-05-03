@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <h1>Stevo's Vending Machine App</h1>
-      {user ? <Home setUser={setUser}/> : <Welcome setUser={setUser}/>}
+      {user ? <Home setUser={setUser} user={user}/> : <Welcome setUser={setUser}/>}
     </div>
   );
 }

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import AllMachines from "./AllMachines";
 import UsersMachines from "./UsersMachines";
 
-function Home({ setUser }) {
-    const [view, setView] = useState("AllMachines")
+function Home({ setUser, user }) {
+    const [usersVendingMachines, setUsersVendingMachines] = useState(false)
 
     function handleLogout() {
         fetch("/logout", {
@@ -13,9 +13,10 @@ function Home({ setUser }) {
 
     return (
         <nav>
+            <button onClick={() => setUsersVendingMachines(true)}>Your Vending Machines</button>
+            <button onClick={() => setUsersVendingMachines(false)}>All Vending Machines</button>
             <button onClick={handleLogout}>Logout</button>
-            <AllMachines />
-            <UsersMachines />
+            {usersVendingMachines ? <UsersMachines user={user} /> : <AllMachines />}
         </nav>
     )
 }
