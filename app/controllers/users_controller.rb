@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
     #wrap_parameters format: [] # not sure what this is or why we need it?
-    
-    skip_before_action :authorize, only: :create
+
+    skip_before_action :authorize, only: [:create, :index]
 
     # for development purposes - should remove this action later
+    # also need to remove index from skip_bfore_action arguments
     def index
         render json: User.all
     end
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user
+        render json: User.find_by(id: session[:user_id])
     end
 
     private
