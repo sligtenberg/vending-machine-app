@@ -1,31 +1,24 @@
 class UsersController < ApplicationController
-    wrap_parameters format: []
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    #wrap_parameters format: [] # not sure what this is or why we need it?
+    
+    skip_before_action :authorize, only: :create
 
+    # for development purposes - should remove this action later
     def index
         render json: User.all
     end
 
     def create
         user = User.create!(user_params)
-        render json: user
+        session[:user_id] = user.id
+        render json: user, status: :created
     end
 
     def show
-        user = User.find_by(id: session[:user_id])
-        if user
-            render json: user
-        else
-            render json: { error: "Not authorized" }, status: :unauthorized
-        end
+        render json: @current_user
     end
 
     private
-
-    # error handling
-    def render_unprocessable_entity(invalid)
-        render json: {error: invalid.record.errors}, status: :unprocessable_entity
-    end
 
     # strong params
     def user_params
