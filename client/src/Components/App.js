@@ -1,11 +1,9 @@
 import React, { useState, useEffect }from "react";
 import MainPage from "./MainPage";
 import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
 
 function App() {
   const [user, setUser] = useState(null)
-  const [loginMode, setLoginMode] = useState(true)
 
   useEffect(() => {
     // auto login
@@ -16,42 +14,10 @@ function App() {
     });
   }, []);
 
-  function renderPage() {
-    // if a user is logged in, load the main page
-    if (user) {
-      return <MainPage setUser={setUser} user={user} />
-    }
-
-    // otherwise, load the login/signup form
-    else {
-      return (
-        <div>
-          <h2>
-            Login
-              <input
-                type="radio"
-                name="loginModeToggle"
-                defaultChecked
-                onClick={() => setLoginMode(true)}/>
-            Signup
-              <input
-                type="radio"
-                name="loginModeToggle"
-                onClick={() => setLoginMode(false)}/>
-        </h2>
-
-          {loginMode ?
-            <LoginForm setUser={setUser} setLoginMode={setLoginMode}/> :
-            <SignUpForm setUser={setUser} setLoginMode={setLoginMode}/>}
-        </div>
-      )
-    }
-  }
-
   return (
     <div>
       <h1>Stevo's Vending Machine App</h1>
-      {renderPage()}
+      {user ? <MainPage setUser={setUser} user={user} /> : <LoginForm setUser={setUser}/>}
     </div>
   );
 }
