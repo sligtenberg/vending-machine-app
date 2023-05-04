@@ -1,11 +1,14 @@
 import React from "react";
 
-function Signup({ setUser }) {
+function LoginForm({ setUser, setLoginMode }) {
+
     function handleSubmit(event) {
         event.preventDefault()
-        fetch('/users', {
+        fetch("/login", {
             method: "POST",
-            headers: {'Content-Type':'application/json'},
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 username: event.target[0].value,
                 password: event.target[1].value
@@ -13,20 +16,21 @@ function Signup({ setUser }) {
         })
         .then(res => {
             if(res.ok){
+                console.log("here")
                 res.json().then(setUser)
             } else {
-                res.json().then(console.log("error"))
+                res.json().then(alert("Unrecognized credentials"))
             }
-        })
+        })    
     }
-
     return (
         <form onSubmit={handleSubmit}>
             Username: <input type="text" id="username" />
             Password: <input type="text" id="password" />
-            <input type="submit" value="Create Account"/>
+            <input type="submit" value="Log In"/>
+            <button onClick={() => setLoginMode(false)}>Create Account</button>
         </form>
     )
 }
 
-export default Signup;
+export default LoginForm;

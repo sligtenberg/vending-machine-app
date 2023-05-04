@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AllMachines from "./AllMachines";
 import UsersMachines from "./UsersMachines";
 
-function Home({ setUser, user }) {
+function MainPage({ setUser, user }) {
     const [usersVendingMachines, setUsersVendingMachines] = useState(false)
 
     function handleLogout() {
@@ -21,4 +21,4 @@ function Home({ setUser, user }) {
     )
 }
 
-export default Home;
+export default MainPage;
