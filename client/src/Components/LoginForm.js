@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoginForm({ setUser, setLoginMode }) {
+function LoginForm({ setUser }) {
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -28,7 +28,6 @@ function LoginForm({ setUser, setLoginMode }) {
             Username: <input type="text" id="username" />
             Password: <input type="text" id="password" />
             <input type="submit" value="Log In"/>
-            <button onClick={() => setLoginMode(false)}>Create Account</button>
         </form>
     )
 }

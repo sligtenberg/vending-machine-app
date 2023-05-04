@@ -21,12 +21,31 @@ function App() {
     if (user) {
       return <MainPage setUser={setUser} user={user} />
     }
-    // otherwise, load the login form
-    else if (loginMode) {
-      return <LoginForm setUser={setUser} setLoginMode={setLoginMode}/>
+
+    // otherwise, load the login/signup form
+    else {
+      return (
+        <div>
+          <h2>
+            Login
+              <input
+                type="radio"
+                name="loginModeToggle"
+                defaultChecked
+                onClick={() => setLoginMode(true)}/>
+            Signup
+              <input
+                type="radio"
+                name="loginModeToggle"
+                onClick={() => setLoginMode(false)}/>
+        </h2>
+
+          {loginMode ?
+            <LoginForm setUser={setUser} setLoginMode={setLoginMode}/> :
+            <SignUpForm setUser={setUser} setLoginMode={setLoginMode}/>}
+        </div>
+      )
     }
-    // or the sign up form
-    else return <SignUpForm setUser={setUser} />
   }
 
   return (
