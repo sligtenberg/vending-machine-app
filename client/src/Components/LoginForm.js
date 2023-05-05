@@ -13,11 +13,11 @@ function LoginForm({ setUser }) {
                 password: event.target[1].value
             })
         })
-        .then(res => {
-            if(res.ok){
-                res.json().then(setUser)
+        .then(response => {
+            if(response.ok){
+                response.json().then(setUser)
             } else {
-                res.json().then(console.log("error"))
+                response.json().then(error => console.log(error))
             }
         })    
     }

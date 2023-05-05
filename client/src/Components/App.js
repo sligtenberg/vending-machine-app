@@ -10,6 +10,8 @@ function App() {
     fetch("/me").then(response => {
       if (response.ok) {
         response.json().then(setUser);
+      } else {
+        response.json().then(error => console.log(error))
       }
     });
   }, []);
