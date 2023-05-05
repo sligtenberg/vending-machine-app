@@ -38,7 +38,7 @@ function LoginForm({ setUser }) {
 
             <form onSubmit={handleSubmit}>
                 Username: <input type="text" id="username" />
-                Password: <input type="text" id="password" />
+                Password: <input type="password" id="password" />
                 <input type="submit" value={loginMode ? "Log In" : "Create Account"}/>
             </form>
         </div>
