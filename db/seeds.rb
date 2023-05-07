@@ -17,3 +17,9 @@ vending_machines = VendingMachine.create([
     {name: "Vending Machine 2", location: "Location 2", user: users.first},
     {name: "Vending Machine 3", location: "Location 3", user: users.second}
 ])
+
+snacks = Snack.create([
+    {name: "chips", price: 1.00},
+    {name: "cookies", price: 1.50},
+    {name: "gum", price: 0.10}
+])
