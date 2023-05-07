@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :inventories
   resources :snacks
   # development routes. these should be deleted for production:
   resources :vending_machines
