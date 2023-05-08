@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :inventories
-  resources :snacks
-  # development routes. these should be deleted for production:
-  resources :vending_machines
-  resources :users
 
   # session routes:
   # CREATE - when a user logs in, create a session for them
@@ -18,6 +12,10 @@ Rails.application.routes.draw do
   # SHOW - autologin feature
   get "/me", to: "users#show"
 
+  # for development and testing only
+  get "/users", to: "users#index"
+  get "/vending_machines", to: "vending_machines#index"
+  get "/snacks", to: "snacks#index"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
