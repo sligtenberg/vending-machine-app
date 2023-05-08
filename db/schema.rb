@@ -10,36 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_07_194606) do
+ActiveRecord::Schema.define(version: 2023_05_08_042620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "inventories", force: :cascade do |t|
-    t.integer "quantity"
-    t.integer "snack_id"
-    t.integer "vending_machine_id"
+    t.integer "quantity", null: false
+    t.integer "snack_id", null: false
+    t.integer "vending_machine_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "snacks", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price"
+    t.string "name", null: false
+    t.decimal "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.string "username", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
   end
 
   create_table "vending_machines", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
+    t.string "name", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

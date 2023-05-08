@@ -8,18 +8,28 @@
 
 users = User.create([
     {username: "Stephen", password: "123"},
-    {username: "John", password: "456"},
-    {username: "Maddie", password: "789"}
+    {username: "John",    password: "456"},
+    {username: "Maddie",  password: "789"}
 ])
 
 vending_machines = VendingMachine.create([
-    {name: "Vending Machine 1", location: "Location 1", user: users.first},
-    {name: "Vending Machine 2", location: "Location 2", user: users.first},
-    {name: "Vending Machine 3", location: "Location 3", user: users.second}
+    {name: "Vending Machine 1", user: users.first},
+    {name: "Vending Machine 2", user: users.first},
+    {name: "Vending Machine 3", user: users.second}
 ])
 
 snacks = Snack.create([
-    {name: "chips", price: 1.00},
+    {name: "chips",   price: 1.00},
     {name: "cookies", price: 1.50},
-    {name: "gum", price: 0.10}
+    {name: "gum",     price: 0.10},
+    {name: "toy",     price: 4.50}
+])
+
+inventories = Inventory.create([
+    {vending_machine: vending_machines.first,  snack: snacks.first,  quantity: 5},
+    {vending_machine: vending_machines.first,  snack: snacks.second, quantity: 1},
+    {vending_machine: vending_machines.second, snack: snacks.first,  quantity: 3},
+    {vending_machine: vending_machines.second, snack: snacks.second, quantity: 4},
+    {vending_machine: vending_machines.third,  snack: snacks.third,  quantity: 10},
+    {vending_machine: vending_machines.third,  snack: snacks.fourth, quantity: 2}
 ])
