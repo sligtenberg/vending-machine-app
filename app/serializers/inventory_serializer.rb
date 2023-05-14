@@ -1,7 +1,12 @@
 class InventorySerializer < ActiveModel::Serializer
-  attributes :id, :quantity, :snack_id, :vending_machine_id
+  attributes :id, :snack_name, :vending_machine_name, :quantity
 
-  # def vending_machine_name
-  #   byebug
-  # end
+  def snack_name
+    Snack.find(self.object.snack_id).name
+  end
+
+  def vending_machine_name
+    VendingMachine.find(self.object.vending_machine_id).name
+  end
+
 end
