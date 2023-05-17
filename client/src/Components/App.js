@@ -19,6 +19,7 @@ function App() {
   return (
     <div>
       <h1>Stevo's Vending Machine App</h1>
+      <h2>{user ? `Welcome, ${user.username}!` : "Please login"}</h2>
       {user ? <MainPage setUser={setUser} user={user} /> : <LoginForm setUser={setUser}/>}
     </div>
   );

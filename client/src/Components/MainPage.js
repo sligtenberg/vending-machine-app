@@ -3,7 +3,7 @@ import AllMachines from "./AllMachines";
 import UsersMachines from "./UsersMachines";
 
 function MainPage({ setUser, user }) {
-    const [usersVendingMachines, setUsersVendingMachines] = useState(false)
+    const [usersVendingMachines, setUsersVendingMachines] = useState(true)
 
     function handleLogout() {
         fetch("/logout", {
@@ -16,7 +16,7 @@ function MainPage({ setUser, user }) {
             <button onClick={() => setUsersVendingMachines(true)}>Your Vending Machines</button>
             <button onClick={() => setUsersVendingMachines(false)}>All Vending Machines</button>
             <button onClick={handleLogout}>Logout</button>
-            {usersVendingMachines ? <UsersMachines user={user} /> : <AllMachines />}
+            {usersVendingMachines ? <UsersMachines vendingMachines={user.vending_machines} /> : <AllMachines />}
         </nav>
     )
 }

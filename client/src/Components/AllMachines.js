@@ -12,11 +12,16 @@ function AllMachines() {
         })
     }, [])
 
-    const vendingMachineComponents = vendingMachines
-        .map(vendingMachine => <VendingMachineCardCustomer key={vendingMachine.id} vendingMachine={vendingMachine}/>)
+    const vendingMachineCards = vendingMachines
+        .map(vendingMachine =>
+            <VendingMachineCardCustomer
+                key={vendingMachine.id}
+                vendingMachine={vendingMachine}
+            />
+        )
     
     return (
-        <div>{vendingMachineComponents}</div>
+        <div>{vendingMachineCards}</div>
     )
 }
 
