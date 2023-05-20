@@ -12,7 +12,7 @@ function LoggedInNavBar({ setUser, setEditMode }) {
         <nav>
             <button onClick={() => setEditMode(true)}>Your Vending Machines</button>
             <button onClick={() => setEditMode(false)}>All Vending Machines</button>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout} className="float-right">Logout</button>
         </nav>
     )
 }

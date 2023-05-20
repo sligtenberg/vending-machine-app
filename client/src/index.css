@@ -2,18 +2,16 @@ html {
     background: lightblue;
 }
 
-body {
-    margin: 0px;
-}
-
 h1, h2 {
     text-align: center;
 }
 
 nav {
     background-color: lightcoral;
-    padding: 10px;
+    padding: 5px 10px;
     display: block;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 table {
@@ -28,10 +26,10 @@ td {
     border: 1px solid;
 }
 
-input {
+input, button {
     margin-right: 10px;
 }
 
-.login-form {
+.float-right {
     float: right;
 }

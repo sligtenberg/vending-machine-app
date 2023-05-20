@@ -36,7 +36,7 @@ function LoginForm({ setUser }) {
                     onClick={() => setLoginMode(false)}/>
             </span>
 
-            <form onSubmit={handleSubmit} className="login-form">
+            <form onSubmit={handleSubmit} className="float-right">
                 Username: <input type="text" id="username" />
                 Password: <input type="password" id="password" />
                 <input type="submit" value={loginMode ? "Log In" : "Create Account"}/>

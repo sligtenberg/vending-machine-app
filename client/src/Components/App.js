@@ -24,7 +24,7 @@ function App() {
     <div>
       <h1>Stevo's Vending Machines</h1>
       <NavBar user={user} setUser={setUser} editMode={editMode} setEditMode={setEditMode}/>
-      {user ? <MainPage editMode={editMode} user={user} /> : <h2>Log in or sign up to Vend</h2>}
+      {user ? <MainPage editMode={editMode} user={user} /> : <h2>log in or sign up to vend!</h2>}
     </div>
   );
 }
