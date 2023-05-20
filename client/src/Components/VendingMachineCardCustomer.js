@@ -6,7 +6,7 @@ function VendingMachineCardCustomer({ vendingMachine }) {
         .map(snack => <SnackCardCustomer key={snack.id} snack={snack}/>)
 
     return (
-        <table className="vending-machine">
+        <table >
             <caption>{vendingMachine.name}</caption>
             <tbody>
                 <tr>

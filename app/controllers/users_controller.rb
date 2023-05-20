@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         if user
             render json: user, include: ['vending_machines', 'vending_machines.snacks']
         else
-            render json: { errors: ["Not authorized"] }, status: :unauthorized
+            render json: { errors: ["Log in or sign up to vend"] }, status: :unauthorized
         end
     end
 

@@ -1,5 +1,26 @@
+html {
+    background: lightblue;
+}
+
+body {
+    margin: 0px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+nav {
+    background-color: lightcoral;
+    padding: 10px;
+    display: block;
+}
+
 table {
     border-collapse: collapse;
+    background-color: bisque;
+    border: 1px solid;
+    margin: 20px;
 }
 
 td {
@@ -7,7 +28,10 @@ td {
     border: 1px solid;
 }
 
-.vending-machine {
-    background-color: bisque;
-    border: 1px solid;
+input {
+    margin-right: 10px;
+}
+
+.login-form {
+    float: right;
 }

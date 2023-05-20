@@ -2,11 +2,12 @@ import React from "react";
 import SnackCardOwner from "./SnackCardOwner";
 
 function VendingMachineCardOwner({ vendingMachine }) {
+
     const snackComponents = vendingMachine.snacks
         .map(snack => <SnackCardOwner key={snack.id} snack={snack}/>)
 
     return (
-        <table className="vending-machine">
+        <table >
             <caption>{vendingMachine.name}</caption>
             <tbody>
                 <tr>

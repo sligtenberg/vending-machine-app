@@ -23,25 +23,25 @@ function LoginForm({ setUser }) {
     }
 
     return (
-        <div>
-            <h2>
-                Login <input
+        <nav>
+            <span>
+                Log In <input
                     type="radio"
                     name="loginModeToggle"
                     defaultChecked
                     onClick={() => setLoginMode(true)}/>
-                Signup <input
+                Create Account <input
                     type="radio"
                     name="loginModeToggle"
                     onClick={() => setLoginMode(false)}/>
-            </h2>
+            </span>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="login-form">
                 Username: <input type="text" id="username" />
                 Password: <input type="password" id="password" />
                 <input type="submit" value={loginMode ? "Log In" : "Create Account"}/>
             </form>
-        </div>
+        </nav>
 
     )
 }
