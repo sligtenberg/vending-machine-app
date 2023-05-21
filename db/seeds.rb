@@ -13,9 +13,9 @@ users = User.create([
 ])
 
 vending_machines = VendingMachine.create([
-    {name: "Vending Machine 1", user: users.first},
-    {name: "Vending Machine 2", user: users.first},
-    {name: "Vending Machine 3", user: users.second}
+    {name: "Snack Master", user: users.first},
+    {name: "Dream Vender", user: users.first},
+    {name: "Lean Mean Vending Machine", user: users.second}
 ])
 
 snacks = Snack.create([

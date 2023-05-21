@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoggedInNavBar({ setUser, setEditMode }) {
+function LoggedInNavBar({ setUser, setViewPersonalMachines }) {
 
     function handleLogout() {
         fetch("/logout", {
@@ -10,9 +10,9 @@ function LoggedInNavBar({ setUser, setEditMode }) {
 
     return (
         <nav>
-            <button onClick={() => setEditMode(true)}>Your Vending Machines</button>
-            <button onClick={() => setEditMode(false)}>All Vending Machines</button>
-            <button onClick={handleLogout} className="float-right">Logout</button>
+            <button onClick={() => setViewPersonalMachines(true)}>Your Vending Machines</button>
+            <button onClick={() => setViewPersonalMachines(false)}>All Vending Machines</button>
+            <button onClick={handleLogout} className="float-right">Log Out</button>
         </nav>
     )
 }

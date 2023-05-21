@@ -1,14 +1,14 @@
 import React from "react";
-import VendingMachineCardOwner from "./VendingMachineCardOwner";
+import VendingMachineCard from "./VendingMachineCard";
 
-function UsersMachines({ vendingMachines }) {
+function VendingMachinesContainer({ viewPersonalMachines, vendingMachines }) {
 
     const vendingMachineCards = vendingMachines
         .map(vendingMachine =>
-            <VendingMachineCardOwner
+            <VendingMachineCard
                 key={vendingMachine.id}
                 vendingMachine={vendingMachine}
-            />
+                viewPersonalMachines={viewPersonalMachines}/>
         )
 
     return (
@@ -16,4 +16,4 @@ function UsersMachines({ vendingMachines }) {
     )
 }
 
-export default UsersMachines;
+export default VendingMachinesContainer;

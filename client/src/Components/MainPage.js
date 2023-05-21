@@ -1,13 +1,22 @@
-import React from "react";
-import AllMachines from "./AllMachines";
-import UsersMachines from "./UsersMachines";
+import React, { useState, useEffect } from "react";
+import VendingMachinesContainer from "./VendingMachinesContainer";
 
-function MainPage({ user, editMode }) {
+function MainPage({ userVendingMachines, viewPersonalMachines }) {
+    const [allVendingMachines, setAllVendingMachines] = useState([])
+
+    useEffect(() => {
+        fetch('/vending_machines').then(response => {
+            if (response.ok) {
+                response.json().then(setAllVendingMachines)
+            }
+        })
+    }, [])
 
     return (
-        <div>
-            {editMode ? <UsersMachines vendingMachines={user.vending_machines} /> : <AllMachines />}
-        </div>
+        <VendingMachinesContainer
+            viewPersonalMachines={viewPersonalMachines}
+            vendingMachines={viewPersonalMachines ?
+                userVendingMachines : allVendingMachines} />
     )
 }
 

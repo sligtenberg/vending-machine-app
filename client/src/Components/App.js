@@ -1,13 +1,14 @@
 import React, { useState, useEffect }from "react";
-import { Switch, Route } from "react-router-dom";
+// import { Switch, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 
 function App() {
   const [user, setUser] = useState(null)
 
-  // when true, we show the user's vending machines, when false, we show all vending machines
-  const [editMode, setEditMode] = useState(true)
+  // true: show user's vending machines
+  // false: show all vending machines
+  const [viewPersonalMachines, setViewPersonalMachines] = useState(true)
 
   useEffect(() => {
     // auto login
@@ -23,8 +24,16 @@ function App() {
   return (
     <div>
       <h1>Stevo's Vending Machines</h1>
-      <NavBar user={user} setUser={setUser} editMode={editMode} setEditMode={setEditMode}/>
-      {user ? <MainPage editMode={editMode} user={user} /> : <h2>log in or sign up to vend!</h2>}
+      <NavBar
+        user={user}
+        setUser={setUser}
+        viewPersonalMachines={viewPersonalMachines}
+        setViewPersonalMachines={setViewPersonalMachines}/>
+      {user ?
+        <MainPage
+          viewPersonalMachines={viewPersonalMachines}
+          userVendingMachines={user.vending_machines} /> :
+        <h2>log in or sign up to vend!</h2>}
     </div>
   );
 }

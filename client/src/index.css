@@ -30,6 +30,11 @@ input, button {
     margin-right: 10px;
 }
 
+caption {
+    font-size: large;
+    font-style: italic;
+}
+
 .float-right {
     float: right;
 }
