@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom"
 
-function LoggedInNavBar({ setUser, setViewPersonalMachines }) {
+function LoggedInNavBar({ setUser }) {
 
     function handleLogout() {
         fetch("/logout", {
@@ -10,8 +11,8 @@ function LoggedInNavBar({ setUser, setViewPersonalMachines }) {
 
     return (
         <nav>
-            <button onClick={() => setViewPersonalMachines(true)}>Your Vending Machines</button>
-            <button onClick={() => setViewPersonalMachines(false)}>All Vending Machines</button>
+            <NavLink to="/all_vending_machines"><button>All Vending Machines</button></NavLink>
+            <NavLink to="/my_vending_machines"><button>My Vending Machines</button></NavLink>
             <button onClick={handleLogout} className="float-right">Log Out</button>
         </nav>
     )

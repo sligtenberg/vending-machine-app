@@ -1,14 +1,13 @@
 import React from "react";
 import VendingMachineCard from "./VendingMachineCard";
 
-function VendingMachinesContainer({ viewPersonalMachines, vendingMachines }) {
+function VendingMachinesContainer({ vendingMachines}) {
 
     const vendingMachineCards = vendingMachines
         .map(vendingMachine =>
             <VendingMachineCard
                 key={vendingMachine.id}
-                vendingMachine={vendingMachine}
-                viewPersonalMachines={viewPersonalMachines}/>
+                vendingMachine={vendingMachine} />
         )
 
     return (

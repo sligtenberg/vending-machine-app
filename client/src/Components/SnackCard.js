@@ -1,12 +1,14 @@
 import React from "react";
+import { useMatch } from "react-router-dom"
 
-function SnackCard({ snack, viewPersonalMachines }) {
+function SnackCard ({ snack, handleButtonClick }) {
+
     return (
-        <tr>
-            <td>{snack.name}</td>
-            <td>${snack.price.toFixed(2)}</td>
-            <td><button>{viewPersonalMachines ? "edit" : "purchase"}</button></td>
-        </tr>
+        <td>
+            {`${snack.snack_name} (${snack.quantity})`}<br/>
+            ${snack.snack_price.toFixed(2)}<br/>
+            <button onClick={handleButtonClick}>{useMatch('my_vending_machines') ? "Delete" : "Purchase"}</button>
+        </td>
     )
 }
 

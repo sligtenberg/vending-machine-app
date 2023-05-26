@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import VendingMachinesContainer from "./VendingMachinesContainer";
 
-function MainPage({ userVendingMachines, viewPersonalMachines }) {
+function MainPage({ userVendingMachines }) {
     const [allVendingMachines, setAllVendingMachines] = useState([])
 
     useEffect(() => {
@@ -13,10 +14,21 @@ function MainPage({ userVendingMachines, viewPersonalMachines }) {
     }, [])
 
     return (
-        <VendingMachinesContainer
-            viewPersonalMachines={viewPersonalMachines}
-            vendingMachines={viewPersonalMachines ?
-                userVendingMachines : allVendingMachines} />
+        <Routes>
+            <Route path="/all_vending_machines" element={
+                <VendingMachinesContainer
+                    vendingMachines={allVendingMachines} />
+            }/>
+            <Route path="/my_vending_machines" element={
+                <VendingMachinesContainer
+                    vendingMachines={userVendingMachines} />
+            }/>
+            <Route exact path="/" element={
+                <VendingMachinesContainer
+                    vendingMachines={allVendingMachines} />
+            }/>
+
+        </Routes>
     )
 }
 
