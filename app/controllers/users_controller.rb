@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     # for development purposes - should remove this action later
     # also need to remove index from skip_bfore_action arguments
     def index
-        render json: User.all, include: ['vending_machines', 'vending_machines.snacks']
+        render json: User.all, include: ['vending_machines', 'vending_machines.inventories']
     end
 
     # create a new user and make a session for them
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         if user
-            render json: user, include: ['vending_machines', 'vending_machines.snacks']
+            render json: user, include: ['vending_machines', 'vending_machines.inventories']
         else
             render json: { errors: ["Log in or sign up to vend"] }, status: :unauthorized
         end
