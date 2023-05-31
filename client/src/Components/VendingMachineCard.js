@@ -9,19 +9,14 @@ function VendingMachineCard({ vendingMachine }) {
             snack={inventory} />)
 
     for (let i = vendingMachine.inventories.length; i < 12; i++) {
-        snackCards[i] = <td key={`a${i}`}></td>
+        snackCards[i] = <td className="snack-card" key={`a${i}`}></td>
     }
 
     return (
-        <table>
-            <caption>{vendingMachine.name}</caption>
-            <tbody>
-                <tr>{snackCards[0]}{snackCards[1 ]}{snackCards[2]}</tr>
-                <tr>{snackCards[3]}{snackCards[4 ]}{snackCards[5]}</tr>
-                <tr>{snackCards[6]}{snackCards[7 ]}{snackCards[8]}</tr>
-                <tr>{snackCards[9]}{snackCards[10]}{snackCards[11]}</tr>
-            </tbody>
-        </table>
+        <div className="vending-machine-card">
+            <h2>{vendingMachine.name}</h2>
+            <div className="grid">{snackCards}</div>
+        </div>
     )
 }
 

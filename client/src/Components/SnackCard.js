@@ -1,14 +1,23 @@
 import React from "react";
-import { useMatch } from "react-router-dom"
+import { useLocation } from 'react-router-dom'
 
 function SnackCard ({ snack, handleButtonClick }) {
+    const path = useLocation().pathname
+
+    const button = () => {
+        switch (path) {
+            case "/all_vending_machines": return <button>Purchase</button>
+            case "/my_vending_machines": return <button>Remove</button>
+            default : return null
+        }
+    }
 
     return (
-        <td>
-            {`${snack.snack_name} (${snack.quantity})`}<br/>
-            ${snack.snack_price.toFixed(2)}<br/>
-            <button onClick={handleButtonClick}>{useMatch('my_vending_machines') ? "Delete" : "Purchase"}</button>
-        </td>
+        <div className="snack-card">
+            {snack.name}{snack.quantity ? ` (${snack.quantity})` : null}<br/>
+            ${snack.price.toFixed(2)}<br/>
+            {button()}
+        </div>
     )
 }
 
