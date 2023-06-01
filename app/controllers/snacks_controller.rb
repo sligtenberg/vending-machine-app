@@ -9,7 +9,16 @@ class SnacksController < ApplicationController
         render json: snack, status: :created
     end
 
+    def destroy
+        find_snack.destroy
+        head :no_content
+    end
+
     private
+
+    def find_snack
+        Snack.find(params[:id])
+    end
 
     # strong params
     def snack_params

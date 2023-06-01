@@ -15,11 +15,14 @@ Rails.application.routes.draw do
   # snacks routes
   # CREATE - any user can create a new snack
   post "/snacks", to: "snacks#create"
+  # DESTROY - any user can delete a snack
+  delete "/snacks", to: "snacks#destroy"
+  resources :snacks, only: [:index, :show, :destroy]
 
   # for development and testing only
   get "/users", to: "users#index"
   get "/vending_machines", to: "vending_machines#index"
-  get "/snacks", to: "snacks#index"
+  # get "/snacks", to: "snacks#index"
   get "/inventories", to: "inventories#index"
 
   # Routing logic: fallback requests for React Router.

@@ -8,7 +8,7 @@ function SnackCard ({ snack, handleButtonClick }) {
         switch (path) {
             case "/all_vending_machines": return <button>Purchase</button>
             case "/my_vending_machines": return <button>Remove</button>
-            default : return null
+            case "/manage_snacks" : return snack.is_used ? null : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
         }
     }
 

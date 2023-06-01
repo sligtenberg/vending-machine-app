@@ -9,7 +9,7 @@ function VendingMachineCard({ vendingMachine }) {
             snack={inventory} />)
 
     for (let i = vendingMachine.inventories.length; i < 12; i++) {
-        snackCards[i] = <td className="snack-card" key={`a${i}`}></td>
+        snackCards[i] = <div className="snack-card" key={`a${i}`}></div>
     }
 
     return (

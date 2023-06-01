@@ -1,7 +1,7 @@
 import React from "react";
 import VendingMachineCard from "./VendingMachineCard";
 
-function VendingMachinesContainer({ vendingMachines}) {
+function VendingMachinesContainer({ vendingMachines }) {
 
     const vendingMachineCards = vendingMachines
         .map(vendingMachine =>

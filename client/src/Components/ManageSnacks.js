@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SnackCard from "./SnackCard";
 
-function CreateNewSnack() {
-    const [snacks, setSnacks] = useState([])
-    const snackCards = snacks.map(snack => <SnackCard className="snack-card" key={snack.id} snack={snack}/>)
+function ManageSnacks({ allSnacks, setAllSnacks }) {
+    const snackCards = allSnacks.map(snack => 
+        <SnackCard className="snack-card"
+            key={snack.id}
+            snack={snack}
+            handleButtonClick={handleDeleteSnack}/>)
 
-    useEffect(() => {
-        fetch("/snacks").then(response => {
-            if (response.ok) {
-                response.json().then(setSnacks);
-            } else {
-                response.json().then(console.log)
-            }
-        })
-    }, []);
-
+    // create a new snack
     function handleFormSubmit (event) {
         event.preventDefault()
-
         fetch("/snacks", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -27,16 +20,26 @@ function CreateNewSnack() {
             })
         }).then(response => {
             if (response.ok) {
-                response.json().then(newSnack => setSnacks([...snacks, newSnack]));
+                response.json().then(newSnack => setAllSnacks([...allSnacks, newSnack]));
             } else {
                 response.json().then(console.log)
             }
         })
     }
 
+    // delete a snack
+    function handleDeleteSnack(snackToDeleteId) {
+        fetch(`/snacks/${snackToDeleteId}`, {method: "DELETE"})
+            .then(response => {
+                if (response.ok) {
+                    setAllSnacks(allSnacks.filter(snack => snack.id !== snackToDeleteId))
+                }
+            })
+    }
+
     return (
         <div>
-            <h2>Submit the form to create a new snack</h2>
+            <h2>Submit form to create a new snack</h2>
             <form onSubmit={event => handleFormSubmit(event)}>
                 <table>
                     <tbody>
@@ -54,4 +57,4 @@ function CreateNewSnack() {
     )
 }
 
-export default CreateNewSnack;
+export default ManageSnacks;

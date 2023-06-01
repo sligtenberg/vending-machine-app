@@ -19,12 +19,19 @@ vending_machines = VendingMachine.create([
 ])
 
 snacks = Snack.create([
-    {name: "Chips",   price: 1.00},
-    {name: "Cookies", price: 1.50},
-    {name: "Gum",     price: 0.10},
-    {name: "Toy",     price: 4.50},
-    {name: "Soda",    price: 1.00},
-    {name: "Hot Dog", price: 2.50}
+    {name: "Chips",       price: 1.00},
+    {name: "Cookies",     price: 1.50},
+    {name: "Gum",         price: 0.10},
+    {name: "Toy",         price: 4.50},
+    {name: "Soda",        price: 1.00},
+    {name: "Hot Dog",     price: 2.50},
+    {name: "Burger",      price: 4.50},
+    {name: "Lg Jerky",    price: 6.50},
+    {name: "Sm Jerky",    price: 4.00},
+    {name: "Coke",        price: 1.50},
+    {name: "Fanta",       price: 1.50},
+    {name: "Nachos",      price: 3.50},
+    {name: "Bouncy ball", price: 1.00}
 ])
 
 inventories = Inventory.create([
