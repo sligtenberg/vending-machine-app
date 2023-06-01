@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   # SHOW - autologin feature
   get "/me", to: "users#show"
 
+  # snacks routes
+  # CREATE - any user can create a new snack
+  post "/snacks", to: "snacks#create"
+
   # for development and testing only
   get "/users", to: "users#index"
   get "/vending_machines", to: "vending_machines#index"
