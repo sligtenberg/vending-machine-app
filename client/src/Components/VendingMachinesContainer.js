@@ -11,7 +11,10 @@ function VendingMachinesContainer({ vendingMachines }) {
         )
 
     return (
-        <div>{vendingMachineCards}</div>
+        <div>
+            <h3>Your vending machines</h3>
+            {vendingMachineCards}
+        </div>
     )
 }
 

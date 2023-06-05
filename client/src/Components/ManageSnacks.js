@@ -39,7 +39,7 @@ function ManageSnacks({ allSnacks, setAllSnacks }) {
 
     return (
         <div>
-            <h2>Submit form to create a new snack</h2>
+            <h3>Submit form to create a new snack</h3>
             <form onSubmit={event => handleFormSubmit(event)}>
                 <table>
                     <tbody>
@@ -49,8 +49,8 @@ function ManageSnacks({ allSnacks, setAllSnacks }) {
                     </tbody>
                 </table> 
             </form>
+            <h3>Current Snacks</h3>
             <div className="vending-machine-card">
-                <h2>Current Snacks</h2>
                 <div className="grid">{snackCards}</div>
             </div>
         </div>

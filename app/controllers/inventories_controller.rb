@@ -1,11 +1,23 @@
 class InventoriesController < ApplicationController
+    def create
+        inventory = Inventory.create!(inventory_params)
+        render json: inventory, status: :created
+    end
 
-    skip_before_action :authorize, only: [:index]
+    def destroy
+        find_inventory.destroy
+        head :no_content
+    end
 
-    # for development purposes - should remove this action later
-    # also need to remove index from skip_bfore_action arguments
-    def index
-        render json: Inventory.all
+    private
+
+    def find_inventory
+        Inventory.find(params[:id])
+    end
+
+    # strong params
+    def inventory_params
+        params.permit(:snack_id, :vending_machine_id, :quantity)
     end
 
 end

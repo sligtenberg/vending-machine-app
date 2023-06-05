@@ -25,5 +25,4 @@ class SnacksController < ApplicationController
         params.permit(:name, :price)
     end
 
-
 end

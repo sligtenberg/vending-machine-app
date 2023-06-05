@@ -25,7 +25,7 @@ function App() {
       />
       {user ?
         <MainPage
-          userVendingMachines={user.vending_machines} /> :
+          user={user} /> :
         <h2>log in or sign up to vend!</h2>}
     </div>
   );
