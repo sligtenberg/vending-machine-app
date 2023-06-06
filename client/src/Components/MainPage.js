@@ -50,7 +50,8 @@ function MainPage({ user }) {
                 <div>
                     <AddSnackForm
                         allSnacks={allSnacks}
-                        vendingMachines={userVendingMachines}/>
+                        vendingMachines={userVendingMachines}
+                        setUserVendingMachines={setUserVendingMachines}/>
                     <NewVendingMachineForm />
                     <VendingMachinesContainer
                         vendingMachines={userVendingMachines} />
@@ -59,7 +60,8 @@ function MainPage({ user }) {
             <Route path="/manage_snacks" element={
                 <ManageSnacks
                     allSnacks={allSnacks}
-                    setAllSnacks={setAllSnacks}/>
+                    setAllSnacks={setAllSnacks}
+                    setUserVendingMachines={setUserVendingMachines}/>
             }/>
             <Route exact path="/" element={
                 <VendingMachinesContainer

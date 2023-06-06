@@ -1,13 +1,10 @@
 import React from "react";
 
-function AddSnackForm({ allSnacks, vendingMachines }) {
+function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
 
     // create a new inventory
     function handleFormSubmit(event) {
         event.preventDefault()
-        console.log(event.target[0].value)
-        console.log(event.target[1].value)
-        console.log(event.target[2].value)
 
         fetch("/inventories", {
             method: "POST",
@@ -19,7 +16,16 @@ function AddSnackForm({ allSnacks, vendingMachines }) {
             })
         }).then(response => {
             if (response.ok) {
-                // response.json().then(newSnack => setAllSnacks([...allSnacks, newSnack]));
+                response.json().then(newInventory => {
+                    setUserVendingMachines(vendingMachines.map(vendingMachine => {
+                        if (vendingMachine.id === newInventory.vending_machine_id) {
+                            vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
+                            return vendingMachine
+                        } else {
+                            return vendingMachine
+                        }
+                    }))
+                });
             } else {
                 response.json().then(console.log)
             }
