@@ -40,11 +40,33 @@ function MainPage({ user }) {
         })
     }, [])
 
+    // remove a snack from a user vending machine
+    function removeSnack(inventoryToDelete) {
+        fetch(`/inventories/${inventoryToDelete.id}`, {method: "DELETE"})
+            .then(response => {
+                if (response.ok) {
+                    setUserVendingMachines(userVendingMachines.map(vendingMachine => {
+                        if (vendingMachine.id === inventoryToDelete.vending_machine_id){
+                            vendingMachine.inventories = vendingMachine.inventories
+                                .filter(inventory => inventory.id !== inventoryToDelete.id)
+                            return vendingMachine
+                        } return vendingMachine
+                    }))
+                }
+            })
+    }
+
+    // purchase a snack
+    function purchaseSnack() {
+
+    }
+
     return (
         <Routes >
             <Route path="/all_vending_machines" element={
                 <VendingMachinesContainer
-                    vendingMachines={allVendingMachines} />
+                    vendingMachines={allVendingMachines}
+                    handleSnackButtonClick={purchaseSnack} />
             }/>
             <Route path="/my_vending_machines" element={
                 <div>
@@ -54,7 +76,8 @@ function MainPage({ user }) {
                         setUserVendingMachines={setUserVendingMachines}/>
                     <NewVendingMachineForm />
                     <VendingMachinesContainer
-                        vendingMachines={userVendingMachines} />
+                        vendingMachines={userVendingMachines}
+                        handleSnackButtonClick={removeSnack} />
                 </div>
             }/>
             <Route path="/manage_snacks" element={

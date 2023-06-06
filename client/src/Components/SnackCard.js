@@ -6,9 +6,9 @@ function SnackCard ({ snack, handleButtonClick }) {
 
     const button = () => {
         switch (path) {
-            case "/all_vending_machines": return <button>Purchase</button>
-            case "/my_vending_machines": return <button>Remove</button>
-            case "/manage_snacks" : return snack.is_used ? null : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
+            case "/all_vending_machines": return <button onClick={() => handleButtonClick(snack)}>Purchase</button>
+            case "/my_vending_machines": return <button onClick={() => handleButtonClick(snack)}>Remove</button>
+            case "/manage_snacks" : return snack.is_used ? "(in use)" : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
         }
     }
 

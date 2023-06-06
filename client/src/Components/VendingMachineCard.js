@@ -1,12 +1,13 @@
 import React from "react";
 import SnackCard from "./SnackCard";
 
-function VendingMachineCard({ vendingMachine }) {
+function VendingMachineCard({ vendingMachine, handleSnackButtonClick }) {
 
     const snackCards = vendingMachine.inventories
         .map(inventory => <SnackCard
             key={inventory.id}
-            snack={inventory} />)
+            snack={inventory} 
+            handleButtonClick={handleSnackButtonClick}/>)
 
     for (let i = vendingMachine.inventories.length; i < 12; i++) {
         snackCards[i] = <div className="snack-card" key={`a${i}`}></div>

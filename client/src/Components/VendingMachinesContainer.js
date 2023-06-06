@@ -1,13 +1,14 @@
 import React from "react";
 import VendingMachineCard from "./VendingMachineCard";
 
-function VendingMachinesContainer({ vendingMachines }) {
+function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick }) {
 
     const vendingMachineCards = vendingMachines
         .map(vendingMachine =>
             <VendingMachineCard
                 key={vendingMachine.id}
-                vendingMachine={vendingMachine} />
+                vendingMachine={vendingMachine} 
+                handleSnackButtonClick={handleSnackButtonClick}/>
         )
 
     return (

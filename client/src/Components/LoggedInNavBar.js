@@ -13,7 +13,7 @@ function LoggedInNavBar({ setUser }) {
         <nav>
             <NavLink to="/all_vending_machines"><button>All Vending Machines</button></NavLink>
             <NavLink to="/my_vending_machines"><button>My Vending Machines</button></NavLink>
-            <NavLink to="/manage_snacks"><button>Create A New Snack</button></NavLink>
+            <NavLink to="/manage_snacks"><button>Manage Snacks</button></NavLink>
             <button onClick={handleLogout} className="float-right">Log Out</button>
         </nav>
     )

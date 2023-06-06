@@ -21,9 +21,7 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
                         if (vendingMachine.id === newInventory.vending_machine_id) {
                             vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
                             return vendingMachine
-                        } else {
-                            return vendingMachine
-                        }
+                        } return vendingMachine
                     }))
                 });
             } else {
