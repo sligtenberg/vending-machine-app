@@ -13,11 +13,11 @@ function LoginForm({ setUser }) {
         password: event.target[1].value
       })
     })
-    .then(response => {
-      if(response.ok){
-        response.json().then(setUser)
+    .then(rspns => {
+      if(rspns.ok){
+        rspns.json().then(setUser)
       } else {
-        response.json().then(error => console.log(error))
+        rspns.json().then(rspns => alert(rspns.errors))
       }
     })    
   }

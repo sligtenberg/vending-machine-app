@@ -12,7 +12,7 @@ function SnackCard ({ snack, handleButtonClick }) {
         return <button onClick={() => handleButtonClick(snack)}>Remove</button>
       default:
         return snack.is_used ?
-          "(in use)" : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
+          <span>(in use)</span> : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
     }
   }
 

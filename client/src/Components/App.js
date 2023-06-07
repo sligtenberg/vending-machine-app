@@ -7,11 +7,11 @@ function App() {
 
   useEffect(() => {
     // auto login
-    fetch("/me").then(response => {
-      if (response.ok) {
-        response.json().then(setUser);
+    fetch("/me").then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(setUser);
       } else {
-        response.json().then(console.log)
+        rspns.json().then(console.log)
       }
     });
   }, []);

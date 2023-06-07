@@ -12,33 +12,33 @@ function MainPage({ user }) {
 
   useEffect(() => {
     // fetch all vending machines
-    fetch('/vending_machines').then(response => {
-      if (response.ok) {
-        response.json().then(setAllVendingMachines)
-      } else response.json().then(console.log)
+    fetch('/vending_machines').then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(setAllVendingMachines)
+      } else rspns.json().then(console.log)
     })
 
     // fetch user's vending machines
-    fetch(`users/${user.id}/vending_machines`).then(response => {
-      if (response.ok) {
-        response.json().then(setUserVendingMachines)
+    fetch(`users/${user.id}/vending_machines`).then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(setUserVendingMachines)
 
-      } else response.json().then(console.log)
+      } else rspns.json().then(console.log)
     })
 
     // fetch all snacks
-    fetch("/snacks").then(response => {
-      if (response.ok) {
-        response.json().then(setAllSnacks);
-      } else response.json().then(console.log)
+    fetch("/snacks").then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(setAllSnacks);
+      } else rspns.json().then(console.log)
     })
   }, [user.id]) // added the user.id dependency because react asked me to
 
   // remove a snack from a user vending machine
   function removeSnack(inventoryToDelete) {
     fetch(`/inventories/${inventoryToDelete.id}`, {method: "DELETE"})
-      .then(response => {
-        if (response.ok) {
+      .then(rspns => {
+        if (rspns.ok) {
           setUserVendingMachines(userVendingMachines.map(vendingMachine => {
             if (vendingMachine.id === inventoryToDelete.vending_machine_id){
               vendingMachine.inventories = vendingMachine.inventories

@@ -13,9 +13,9 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
         snack_id: event.target[1].value,
         quantity: event.target[2].value
       })
-    }).then(response => {
-      if (response.ok) {
-        response.json().then(newInventory => {
+    }).then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(newInventory => {
           setUserVendingMachines(vendingMachines.map(vendingMachine => {
             if (vendingMachine.id === newInventory.vending_machine_id) {
               vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
@@ -24,7 +24,7 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
           }))
         });
       } else {
-        response.json().then(console.log)
+        rspns.json().then(rspns => alert(rspns.errors))
       }
     })
   }
