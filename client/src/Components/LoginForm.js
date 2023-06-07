@@ -3,14 +3,14 @@ import React, { useState } from "react";
 function LoginForm({ setUser }) {
   const [loginMode, setLoginMode] = useState(true)
 
-  function handleSubmit(event) {
-    event.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault()
     fetch((loginMode ? "/login" : "/users"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: event.target[0].value,
-        password: event.target[1].value
+        username: e.target[0].value,
+        password: e.target[1].value
       })
     })
     .then(rspns => {
