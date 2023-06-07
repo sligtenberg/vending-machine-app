@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
 
@@ -19,13 +19,9 @@ function App() {
   return (
     <div>
       <h1>Stevo's Vending Machines</h1>
-      <NavBar
-        user={user}
-        setUser={setUser}
-      />
+      <NavBar user={user} setUser={setUser} />
       {user ?
-        <MainPage
-          user={user} /> :
+        <MainPage user={user} /> :
         <h2>log in or sign up to vend!</h2>}
     </div>
   );
