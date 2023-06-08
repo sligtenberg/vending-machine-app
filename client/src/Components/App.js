@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import MainPage from "./MainPage";
-import NavBar from "./NavBar";
+import React, { useState, useEffect } from 'react';
+import MainPage from './MainPage';
+import NavBar from './NavBar';
 
 function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
     // auto login
-    fetch("/me").then(rspns => {
+    fetch('/me').then(rspns => {
       if (rspns.ok) {
         rspns.json().then(setUser);
       } else {

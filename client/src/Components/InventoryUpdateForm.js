@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
   const [newInventory, setNewInventory] = useState({
-    vending_machine_id: "",
-    snack_id: "",
-    quantity: ""
+    vending_machine_id: '',
+    snack_id: '',
+    quantity: ''
   })
 
   // update form state 
@@ -22,8 +22,8 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
     // if that inventory exists, we send a patch request to update the quantity
     if (existingInventory) {
       fetch(`/inventories/${existingInventory.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({...newInventory, quantity: parseInt(newInventory.quantity) + parseInt(existingInventory.quantity)})
       }).then(rspns => {
         if (rspns.ok) {
@@ -37,9 +37,9 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
               } return vendingMachine
             }))
             setNewInventory({
-              vending_machine_id: "",
-              snack_id: "",
-              quantity: ""
+              vending_machine_id: '',
+              snack_id: '',
+              quantity: ''
             })
           });
         } else rspns.json().then(rspns => alert(rspns.errors))
@@ -48,9 +48,9 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
     
     // if no inventory is found, we send a post request to create one and add it to the vedning machine
     else {
-      fetch("/inventories", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      fetch('/inventories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newInventory)
       }).then(rspns => {
         if (rspns.ok) {
@@ -62,9 +62,9 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
               } return vendingMachine
             }))
             setNewInventory({
-              vending_machine_id: "",
-              snack_id: "",
-              quantity: ""
+              vending_machine_id: '',
+              snack_id: '',
+              quantity: ''
             })
           });
         } else rspns.json().then(rspns => alert(rspns.errors))
@@ -91,36 +91,36 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
       <h3>Select a vending machine and a snack to add to it</h3>
       <table><tbody>
         <tr>
-          <td className="float-right">Vending machine:</td>
+          <td className='float-right'>Vending machine:</td>
           <td><select
             value={newInventory.vending_machine_id}
-            name="vending_machine_id"
+            name='vending_machine_id'
             onChange={handleChange}>
               <option>select vending machine</option>
               {vendingMachineOptions}
           </select></td>
         </tr>
         <tr>
-          <td className="float-right">Snack to add:</td>
+          <td className='float-right'>Snack to add:</td>
           <td><select
             value={newInventory.snack_id}
-            name="snack_id"
+            name='snack_id'
             onChange={handleChange}>
               <option>select snack</option>
               {snackOptions}
           </select></td>
         </tr>
         <tr>
-          <td className="float-right">Quantity:</td>
+          <td className='float-right'>Quantity:</td>
           <td><input
-            type="number"
-            name="quantity"
+            type='number'
+            name='quantity'
             value={newInventory.quantity}
             onChange={handleChange}/></td>
         </tr>
         <tr>
           <td></td>
-          <td><input type="submit" value="Add Snack"/></td></tr>
+          <td><input type='submit' value='Add Snack'/></td></tr>
       </tbody></table> 
     </form>
   )

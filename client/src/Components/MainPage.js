@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import VendingMachinesContainer from "./VendingMachinesContainer";
-import ManageSnacks from "./ManageSnacks";
-import InventoryUpdateForm from "./InventoryUpdateForm";
-import NewVendingMachineForm from "./NewVendingMachineForm";
+import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import VendingMachinesContainer from './VendingMachinesContainer';
+import ManageSnacks from './ManageSnacks';
+import InventoryUpdateForm from './InventoryUpdateForm';
+import NewVendingMachineForm from './NewVendingMachineForm';
 
 function MainPage({ user }) {
   const [allVendingMachines, setAllVendingMachines] = useState([])
@@ -27,7 +27,7 @@ function MainPage({ user }) {
     })
 
     // fetch all snacks
-    fetch("/snacks").then(rspns => {
+    fetch('/snacks').then(rspns => {
       if (rspns.ok) {
         rspns.json().then(setAllSnacks);
       } else rspns.json().then(console.log)
@@ -36,7 +36,7 @@ function MainPage({ user }) {
 
   // remove a snack from a user vending machine
   function removeSnack(inventoryToDelete) {
-    fetch(`/inventories/${inventoryToDelete.id}`, {method: "DELETE"})
+    fetch(`/inventories/${inventoryToDelete.id}`, {method: 'DELETE'})
       .then(rspns => {
         if (rspns.ok) {
           setUserVendingMachines(userVendingMachines.map(vendingMachine => {
@@ -57,12 +57,12 @@ function MainPage({ user }) {
 
   return (
     <Routes >
-      <Route path="/all_vending_machines" element={
+      <Route path='/all_vending_machines' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines}
           handleSnackButtonClick={purchaseSnack} />
       }/>
-      <Route path="/my_vending_machines" element={
+      <Route path='/my_vending_machines' element={
         <div>
           <InventoryUpdateForm
             allSnacks={allSnacks}
@@ -77,13 +77,13 @@ function MainPage({ user }) {
             setVendingMachines={setUserVendingMachines}/>
         </div>
       }/>
-      <Route path="/manage_snacks" element={
+      <Route path='/manage_snacks' element={
         <ManageSnacks
           allSnacks={allSnacks}
           setAllSnacks={setAllSnacks}
           setUserVendingMachines={setUserVendingMachines}/>
       }/>
-      <Route exact path="/" element={
+      <Route exact path='/' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines} />
       }/>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function NewVendingMachineForm({ userId, vendingMachines, setVendingMachines }) {
-  const [newName, setNewName] = useState("")
+  const [newName, setNewName] = useState('')
   const handleChange = e => setNewName(e.target.value)
 
   function createNewMachine(e) {
@@ -10,9 +10,9 @@ function NewVendingMachineForm({ userId, vendingMachines, setVendingMachines }) 
       name: newName,
       user_id: userId
     })
-    fetch("/vending_machines", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    fetch('/vending_machines', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: newName,
         user_id: userId
@@ -20,7 +20,7 @@ function NewVendingMachineForm({ userId, vendingMachines, setVendingMachines }) 
     }).then(rspns => {
       if (rspns.ok) {
         rspns.json().then(newVendingMachine => setVendingMachines([...vendingMachines, newVendingMachine]))
-        setNewName("")
+        setNewName('')
       } else rspns.json().then(rspns => alert(rspns.errors))
     })
   }
@@ -30,8 +30,8 @@ function NewVendingMachineForm({ userId, vendingMachines, setVendingMachines }) 
       <h3>New vending machine: </h3>
       <form onSubmit={createNewMachine}>
         <table><tbody><tr>
-          <td><input type="text" value={newName} onChange={handleChange} placeholder="name"/></td>
-          <td><input type="submit" value="Create Vending Machine"/></td>
+          <td><input type='text' value={newName} onChange={handleChange} placeholder='name'/></td>
+          <td><input type='submit' value='Create Vending Machine'/></td>
         </tr></tbody></table>
       </form>
     </div>

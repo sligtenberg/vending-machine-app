@@ -1,5 +1,5 @@
-import React from "react";
-import VendingMachineCard from "./VendingMachineCard";
+import React from 'react';
+import VendingMachineCard from './VendingMachineCard';
 
 function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick }) {
   const vendingMachineCards = vendingMachines

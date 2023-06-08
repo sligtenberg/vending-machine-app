@@ -1,6 +1,6 @@
-import React from "react";
-import LoggedInNavBar from "./LoggedInNavBar";
-import LoginForm from "./LoginForm";
+import React from 'react';
+import LoggedInNavBar from './LoggedInNavBar';
+import LoginForm from './LoginForm';
 
 function NavBar({ user, setUser, setViewPersonalMachines }) {
   return (

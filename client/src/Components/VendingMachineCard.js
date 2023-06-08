@@ -1,5 +1,5 @@
-import React from "react";
-import SnackCard from "./SnackCard";
+import React from 'react';
+import SnackCard from './SnackCard';
 
 function VendingMachineCard({ vendingMachine, handleSnackButtonClick }) {
   const snackCards = vendingMachine.inventories
@@ -9,13 +9,13 @@ function VendingMachineCard({ vendingMachine, handleSnackButtonClick }) {
       handleButtonClick={handleSnackButtonClick}/>)
 
   for (let i = vendingMachine.inventories.length; i < 12; i++) {
-    snackCards[i] = <div className="snack-card" key={`a${i}`}></div>
+    snackCards[i] = <div className='snack-card' key={`a${i}`}></div>
   }
 
   return (
-    <div className="vending-machine-card">
+    <div className='vending-machine-card'>
       <h2>{vendingMachine.name}</h2>
-      <div className="grid">{snackCards}</div>
+      <div className='grid'>{snackCards}</div>
     </div>
   )
 }

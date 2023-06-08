@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function LoginForm({ setUser }) {
   const [loginMode, setLoginMode] = useState(true)
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch((loginMode ? "/login" : "/users"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    fetch((loginMode ? '/login' : '/users'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username: e.target[0].value,
         password: e.target[1].value
@@ -25,18 +25,18 @@ function LoginForm({ setUser }) {
   return (
     <nav>
       Log In <input
-        type="radio"
-        name="loginModeToggle"
+        type='radio'
+        name='loginModeToggle'
         defaultChecked
         onClick={() => setLoginMode(true)}/>
       Create Account <input
-        type="radio"
-        name="loginModeToggle"
+        type='radio'
+        name='loginModeToggle'
         onClick={() => setLoginMode(false)}/>
-      <form onSubmit={handleSubmit} className="float-right">
-        Username: <input type="text" />
-        Password: <input type="password" />
-        <input type="submit" value={loginMode ? "Log In" : "Create Account"}/>
+      <form onSubmit={handleSubmit} className='float-right'>
+        Username: <input type='text' />
+        Password: <input type='password' />
+        <input type='submit' value={loginMode ? 'Log In' : 'Create Account'}/>
       </form>
     </nav>
   )

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { useLocation } from 'react-router-dom'
 
 function SnackCard ({ snack, handleButtonClick }) {
@@ -6,9 +6,9 @@ function SnackCard ({ snack, handleButtonClick }) {
 
   const button = () => {
     switch (path) {
-      case "/all_vending_machines":
+      case '/all_vending_machines':
         return <button onClick={() => handleButtonClick(snack)}>Purchase</button>
-      case "/my_vending_machines":
+      case '/my_vending_machines':
         return <button onClick={() => handleButtonClick(snack)}>Remove</button>
       default:
         return snack.is_used ?
@@ -17,7 +17,7 @@ function SnackCard ({ snack, handleButtonClick }) {
   }
 
   return (
-    <div className="snack-card">
+    <div className='snack-card'>
       {snack.name}{snack.quantity ? ` (${snack.quantity})` : null}<br/>
       ${snack.price.toFixed(2)}<br/>
       {button()}
