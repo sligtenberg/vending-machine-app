@@ -70,6 +70,7 @@ function MainPage({ user }) {
             setUserVendingMachines={setUserVendingMachines}/>
           <VendingMachinesContainer
             vendingMachines={userVendingMachines}
+            setVendingMachines={setUserVendingMachines}
             handleSnackButtonClick={removeSnack} />
           <NewVendingMachineForm
             userId={user.id}

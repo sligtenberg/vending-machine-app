@@ -1,13 +1,25 @@
 import React from 'react';
 import VendingMachineCard from './VendingMachineCard';
 
-function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick }) {
+function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick, setVendingMachines }) {
+
+  function deleteVendingMachine(vendingMachineId) {
+    console.log(vendingMachineId)
+    fetch(`/vending_machines/${vendingMachineId}`, {method: 'DELETE'})
+      .then(rspns => {
+        if (rspns.ok) setVendingMachines(vendingMachines
+          .filter(vendingMachine => vendingMachine.id !== vendingMachineId))
+      })
+  }
+  
   const vendingMachineCards = vendingMachines
     .map(vendingMachine =>
       <VendingMachineCard
         key={vendingMachine.id}
         vendingMachine={vendingMachine} 
-        handleSnackButtonClick={handleSnackButtonClick}/>
+        setVendingMachines={setVendingMachines}
+        handleSnackButtonClick={handleSnackButtonClick}
+        deleteVendingMachine={deleteVendingMachine}/>
     )
 
   return (
