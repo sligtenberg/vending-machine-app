@@ -12,7 +12,7 @@ function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick }) {
 
   return (
     <div>
-      <h3>Your vending machines</h3>
+      <h3>Vending machines</h3>
       {vendingMachineCards}
     </div>
   )

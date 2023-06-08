@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
-function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
+function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
   const [newInventory, setNewInventory] = useState({
     vending_machine_id: "",
     snack_id: "",
     quantity: ""
   })
 
+  // update form state 
   const handleChange = e => setNewInventory({...newInventory, [e.target.name]: e.target.value})
 
-  // create a new inventory
-  function handleFormSubmit(e) {
+  // create a new inventory, or update an existing one
+  function handleSubmit(e) {
     e.preventDefault()
 
-    // find an inventory in the vending machine that is being updated which is for the same snack as that which is being added
+    // search the vending machine for an existing matching inventory
     const existingInventory = (vendingMachines
       .find(({id}) => id === parseInt(newInventory.vending_machine_id)).inventories
       .find(({snack_id}) => snack_id === parseInt(newInventory.snack_id)))
@@ -35,12 +36,17 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
                 return vendingMachine
               } return vendingMachine
             }))
+            setNewInventory({
+              vending_machine_id: "",
+              snack_id: "",
+              quantity: ""
+            })
           });
         } else rspns.json().then(rspns => alert(rspns.errors))
       })
     }
     
-    // otherwise, we send a post request to add it to the vedning machine
+    // if no inventory is found, we send a post request to create one and add it to the vedning machine
     else {
       fetch("/inventories", {
         method: "POST",
@@ -55,6 +61,11 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
                 return vendingMachine
               } return vendingMachine
             }))
+            setNewInventory({
+              vending_machine_id: "",
+              snack_id: "",
+              quantity: ""
+            })
           });
         } else rspns.json().then(rspns => alert(rspns.errors))
       })
@@ -76,16 +87,16 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
     </option>)
   
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleSubmit}>
       <h3>Select a vending machine and a snack to add to it</h3>
       <table><tbody>
         <tr>
           <td className="float-right">Vending machine:</td>
           <td><select
             value={newInventory.vending_machine_id}
-            name={"vending_machine_id"}
+            name="vending_machine_id"
             onChange={handleChange}>
-              <option value={""}>select vending machine</option>
+              <option>select vending machine</option>
               {vendingMachineOptions}
           </select></td>
         </tr>
@@ -93,9 +104,9 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
           <td className="float-right">Snack to add:</td>
           <td><select
             value={newInventory.snack_id}
-            name={"snack_id"}
+            name="snack_id"
             onChange={handleChange}>
-              <option value={""}>select snack</option>
+              <option>select snack</option>
               {snackOptions}
           </select></td>
         </tr>
@@ -115,4 +126,4 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
   )
 }
 
-export default AddSnackForm;
+export default InventoryUpdateForm;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import VendingMachinesContainer from "./VendingMachinesContainer";
 import ManageSnacks from "./ManageSnacks";
-import AddSnackForm from "./AddSnackForm";
+import InventoryUpdateForm from "./InventoryUpdateForm";
 import NewVendingMachineForm from "./NewVendingMachineForm";
 
 function MainPage({ user }) {
@@ -64,14 +64,17 @@ function MainPage({ user }) {
       }/>
       <Route path="/my_vending_machines" element={
         <div>
-          <AddSnackForm
+          <InventoryUpdateForm
             allSnacks={allSnacks}
             vendingMachines={userVendingMachines}
             setUserVendingMachines={setUserVendingMachines}/>
-          <NewVendingMachineForm />
           <VendingMachinesContainer
             vendingMachines={userVendingMachines}
             handleSnackButtonClick={removeSnack} />
+          <NewVendingMachineForm
+            userId={user.id}
+            vendingMachines={userVendingMachines}
+            setVendingMachines={setUserVendingMachines}/>
         </div>
       }/>
       <Route path="/manage_snacks" element={

@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   # inventories routes
   resources :inventories, only: [:create, :destroy, :update]
 
+  # vending_machine routes
+  resources :vending_machines, only: [:index, :create, :destroy]
+
   # for development and testing only
   get "/users", to: "users#index"
-  get "/vending_machines", to: "vending_machines#index"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
