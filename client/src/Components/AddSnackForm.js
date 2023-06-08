@@ -12,22 +12,53 @@ function AddSnackForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
   // create a new inventory
   function handleFormSubmit(e) {
     e.preventDefault()
-    fetch("/inventories", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newInventory)
-    }).then(rspns => {
-      if (rspns.ok) {
-        rspns.json().then(newInventory => {
-          setUserVendingMachines(vendingMachines.map(vendingMachine => {
-            if (vendingMachine.id === newInventory.vending_machine_id) {
-              vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
-              return vendingMachine
-            } return vendingMachine
-          }))
-        });
-      } else rspns.json().then(rspns => alert(rspns.errors))
-    })
+
+    // find an inventory in the vending machine that is being updated which is for the same snack as that which is being added
+    const existingInventory = (vendingMachines
+      .find(({id}) => id === parseInt(newInventory.vending_machine_id)).inventories
+      .find(({snack_id}) => snack_id === parseInt(newInventory.snack_id)))
+
+    // if that inventory exists, we send a patch request to update the quantity
+    if (existingInventory) {
+      fetch(`/inventories/${existingInventory.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({...newInventory, quantity: parseInt(newInventory.quantity) + parseInt(existingInventory.quantity)})
+      }).then(rspns => {
+        if (rspns.ok) {
+          rspns.json().then(newInventory => {
+            setUserVendingMachines(vendingMachines
+              .map(vendingMachine => {
+              if (vendingMachine.id === newInventory.vending_machine_id) {
+                vendingMachine.inventories = vendingMachine.inventories
+                  .map(inventory => inventory.id === newInventory.id ? newInventory : inventory)
+                return vendingMachine
+              } return vendingMachine
+            }))
+          });
+        } else rspns.json().then(rspns => alert(rspns.errors))
+      })
+    }
+    
+    // otherwise, we send a post request to add it to the vedning machine
+    else {
+      fetch("/inventories", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newInventory)
+      }).then(rspns => {
+        if (rspns.ok) {
+          rspns.json().then(newInventory => {
+            setUserVendingMachines(vendingMachines.map(vendingMachine => {
+              if (vendingMachine.id === newInventory.vending_machine_id) {
+                vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
+                return vendingMachine
+              } return vendingMachine
+            }))
+          });
+        } else rspns.json().then(rspns => alert(rspns.errors))
+      })
+    }
   }
 
   const vendingMachineOptions = vendingMachines.map(vendingMachine =>

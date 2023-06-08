@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :snacks, only: [:index, :create, :destroy]
 
   # inventories routes
-  resources :inventories, only: [:create, :destroy]
+  resources :inventories, only: [:create, :destroy, :update]
 
   # for development and testing only
   get "/users", to: "users#index"

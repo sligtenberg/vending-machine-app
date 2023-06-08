@@ -9,6 +9,12 @@ class InventoriesController < ApplicationController
         head :no_content
     end
 
+    def update
+      inventory = find_inventory
+      inventory.update(inventory_params)
+      render json: inventory
+    end
+
     private
 
     def find_inventory
