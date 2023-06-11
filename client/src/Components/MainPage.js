@@ -65,11 +65,11 @@ function MainPage({ user }) {
   }
 
   // create an inventory
-  function createInventory(inventory) {
+  function createInventory(newInventory) {
     fetch('/inventories', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(inventory)
+      body: JSON.stringify(newInventory)
     }).then(rspns => {
       if (rspns.ok) {
         rspns.json().then(newInventory => {
@@ -80,6 +80,12 @@ function MainPage({ user }) {
                 return newVendingMachine
               } return vendingMachine
             }))
+          // set is_used to true for snack state
+          setAllSnacks(allSnacks.map(snack => {
+            if (snack.id === newInventory.snack_id) {
+              return {...snack, is_used: true}
+            } return snack
+          }))
         })
       } else rspns.json().then(rspns => alert(rspns.errors))
     })
