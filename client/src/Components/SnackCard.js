@@ -18,7 +18,8 @@ function SnackCard ({ snack, handleButtonClick }) {
 
   return (
     <div className='snack-card'>
-      {snack.name}{snack.quantity ? ` (${snack.quantity})` : null}<br/>
+      {snack.name}
+      {snack.quantity || snack.quantity === 0 ? ` (${snack.quantity})` : null}<br/>
       ${snack.price.toFixed(2)}<br/>
       {button()}
     </div>

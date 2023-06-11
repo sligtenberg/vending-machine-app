@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachines }) {
+function InventoryUpdateForm({ allSnacks, vendingMachines, createInventory, updateInventory }) {
   const [newInventory, setNewInventory] = useState({
     vending_machine_id: '',
     snack_id: '',
@@ -14,62 +14,20 @@ function InventoryUpdateForm({ allSnacks, vendingMachines, setUserVendingMachine
   function handleSubmit(e) {
     e.preventDefault()
 
-    // search the vending machine for an existing matching inventory
+    // search the vending machine for a matching inventory
     const existingInventory = (vendingMachines
       .find(({id}) => id === parseInt(newInventory.vending_machine_id)).inventories
       .find(({snack_id}) => snack_id === parseInt(newInventory.snack_id)))
 
-    // if that inventory exists, we send a patch request to update the quantity
+    // if inventory exists, send a patch request to update the quantity
     if (existingInventory) {
-      fetch(`/inventories/${existingInventory.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...newInventory, quantity: parseInt(newInventory.quantity) + parseInt(existingInventory.quantity)})
-      }).then(rspns => {
-        if (rspns.ok) {
-          rspns.json().then(newInventory => {
-            setUserVendingMachines(vendingMachines
-              .map(vendingMachine => {
-              if (vendingMachine.id === newInventory.vending_machine_id) {
-                vendingMachine.inventories = vendingMachine.inventories
-                  .map(inventory => inventory.id === newInventory.id ? newInventory : inventory)
-                return vendingMachine
-              } return vendingMachine
-            }))
-            setNewInventory({
-              vending_machine_id: '',
-              snack_id: '',
-              quantity: ''
-            })
-          });
-        } else rspns.json().then(rspns => alert(rspns.errors))
-      })
+      const updatedInventory = {...existingInventory}
+      updatedInventory.quantity = parseInt(existingInventory.quantity) + parseInt(newInventory.quantity)
+      updateInventory(updatedInventory)
     }
     
-    // if no inventory is found, we send a post request to create one and add it to the vedning machine
-    else {
-      fetch('/inventories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newInventory)
-      }).then(rspns => {
-        if (rspns.ok) {
-          rspns.json().then(newInventory => {
-            setUserVendingMachines(vendingMachines.map(vendingMachine => {
-              if (vendingMachine.id === newInventory.vending_machine_id) {
-                vendingMachine.inventories = [...vendingMachine.inventories, newInventory]
-                return vendingMachine
-              } return vendingMachine
-            }))
-            setNewInventory({
-              vending_machine_id: '',
-              snack_id: '',
-              quantity: ''
-            })
-          });
-        } else rspns.json().then(rspns => alert(rspns.errors))
-      })
-    }
+    // else, send a post request to create one and add it to the vending machine
+    else createInventory(newInventory)
   }
 
   const vendingMachineOptions = vendingMachines.map(vendingMachine =>
