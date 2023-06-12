@@ -80,16 +80,15 @@ function MainPage({ user }) {
                 return newVendingMachine
               } return vendingMachine
             }))
-          // set is_used to true for snack state
+          // set in_use to true in allSnack state
           setAllSnacks(allSnacks.map(snack => {
             if (snack.id === newInventory.snack_id) {
-              return {...snack, is_used: true}
+              return {...snack, in_use: true}
             } return snack
           }))
         })
       } else rspns.json().then(rspns => alert(rspns.errors))
     })
-    // need to update allSnack state to make snack in use === true
   }
 
   // update an inventory
@@ -128,17 +127,12 @@ function MainPage({ user }) {
     })
   }
 
-  // purchase a snack
-  function purchaseSnack() {
-    console.log("buy snack!")
-  }
-
   return (
     <Routes >
       <Route path='/all_vending_machines' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines}
-          handleSnackButtonClick={purchaseSnack} />
+          handleSnackButtonClick={updateInventory} />
       }/>
       <Route path='/my_vending_machines' element={
         <div>
@@ -162,7 +156,8 @@ function MainPage({ user }) {
       }/>
       <Route exact path='/' element={
         <VendingMachinesContainer
-          vendingMachines={allVendingMachines} />
+          vendingMachines={allVendingMachines}
+          handleSnackButtonClick={updateInventory} />
       }/>
     </Routes>
   )

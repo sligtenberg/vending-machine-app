@@ -4,15 +4,23 @@ import { useLocation } from 'react-router-dom'
 function SnackCard ({ snack, handleButtonClick }) {
   const path = useLocation().pathname
 
+  function purchaseSnack() {
+    const newInventory = {...snack}
+    newInventory.quantity -= 1
+    handleButtonClick(newInventory)
+  }
+
   const button = () => {
     switch (path) {
       case '/all_vending_machines':
-        return <button onClick={() => handleButtonClick(snack)}>Purchase</button>
+        return <button onClick={purchaseSnack}>Purchase</button>
       case '/my_vending_machines':
         return <button onClick={() => handleButtonClick(snack)}>Remove</button>
-      default:
-        return snack.is_used ?
+      case '/manage_snacks':
+        return snack.in_use ?
           <span>(in use)</span> : <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
+      default:
+        return <button onClick={purchaseSnack}>Purchase</button>
     }
   }
 
