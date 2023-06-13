@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   private
 
   def authorize
-    return render json: { errors: ["Not Authorized"] }, status: :unauthorized unless User.find_by(id: session[:user_id])
+    return render json: { errors: ["Log in or sign up to vend!"] }, status: :unauthorized unless User.find_by(id: session[:user_id])
   end
 
   def render_unprocessable_entity_response(exception)

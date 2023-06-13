@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 
 function App() {
   const [user, setUser] = useState(null)
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     // auto login
@@ -11,7 +12,7 @@ function App() {
       if (rspns.ok) {
         rspns.json().then(setUser);
       } else {
-        rspns.json().then(console.log)
+        rspns.json().then(setErrors)
       }
     });
   }, []);
@@ -22,7 +23,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       {user ?
         <MainPage user={user} /> :
-        <h2>log in or sign up to vend!</h2>}
+        <h2>{errors.errors}</h2>}
     </div>
   );
 }

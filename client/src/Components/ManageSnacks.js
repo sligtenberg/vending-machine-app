@@ -47,7 +47,7 @@ function ManageSnacks({ allSnacks, setAllSnacks }) {
       </form>
       <h3>Current Snacks</h3>
       <div className='vending-machine-card'>
-        <div className='grid'>{snackCards}</div>
+        <div className='snack-container'>{snackCards}</div>
       </div>
     </div>
   )

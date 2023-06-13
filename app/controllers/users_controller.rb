@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
 
-    skip_before_action :authorize, only: [:create, :show]
-
-    # for development purposes - should remove this action later
-    def index
-        render json: User.all, include: ['vending_machines', 'vending_machines.inventories']
-    end
+    skip_before_action :authorize, only: [:create]
 
     # create a new user and make a session for them
     def create
@@ -16,11 +11,11 @@ class UsersController < ApplicationController
 
     def show
         user = find_user
-        if user
+        # if user
             render json: user
-        else
-            render json: { errors: ["Log in or sign up to vend"] }, status: :unauthorized
-        end
+        # else
+        #     render json: { errors: ["Log in or sign up to vend"] }, status: :unauthorized
+        # end
     end
 
     def vending_machines

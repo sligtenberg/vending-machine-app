@@ -4,15 +4,15 @@ class InventoriesController < ApplicationController
         render json: inventory, status: :created
     end
 
-    def destroy
-        find_inventory.destroy
-        head :no_content
-    end
-
     def update
       inventory = find_inventory
       inventory.update!(inventory_params)
       render json: inventory
+    end
+
+    def destroy
+        find_inventory.destroy
+        head :no_content
     end
 
     private

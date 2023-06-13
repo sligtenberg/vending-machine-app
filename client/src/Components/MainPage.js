@@ -129,12 +129,12 @@ function MainPage({ user }) {
 
   return (
     <Routes >
-      <Route path='/all_vending_machines' element={
+      <Route path='/shop' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines}
           handleSnackButtonClick={updateInventory} />
       }/>
-      <Route path='/my_vending_machines' element={
+      <Route path='/manage_vending_machines' element={
         <div>
           <InventoryUpdateForm
             allSnacks={allSnacks}

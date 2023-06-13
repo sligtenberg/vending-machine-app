@@ -17,10 +17,10 @@ function VendingMachineCard({ vendingMachine, handleSnackButtonClick, deleteVend
 
   return (
     <div className='vending-machine-card'>
-      {path === '/my_vending_machines' ? 
+      {path === '/manage_vending_machines' ? 
         <button className='float-right' onClick={() => deleteVendingMachine(vendingMachine.id)}>X</button> : null}
       <h2>{vendingMachine.name}</h2>
-      <div className='grid'>{snackCards}</div>
+      <div className='snack-container'>{snackCards}</div>
     </div>
   )
 }
