@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import VendingMachinesContainer from './VendingMachinesContainer';
 import ManageSnacks from './ManageSnacks';
 import InventoryUpdateForm from './InventoryUpdateForm';
 import NewVendingMachineForm from './NewVendingMachineForm';
+import Home from './Home';
+import { UserContext } from '../Context/user';
 
-function MainPage({ user }) {
+function MainPage() {
   const [allVendingMachines, setAllVendingMachines] = useState([])
   const [userVendingMachines, setUserVendingMachines] = useState([])
   const [allSnacks, setAllSnacks] = useState([])
+  const { user } = useContext(UserContext)
 
   function modifyState(callback) {
     setUserVendingMachines(callback(userVendingMachines))
@@ -129,6 +132,9 @@ function MainPage({ user }) {
 
   return (
     <Routes >
+      <Route path='/home' element={
+        <Home />
+      }/>
       <Route path='/shop' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines}
@@ -155,9 +161,10 @@ function MainPage({ user }) {
           setAllSnacks={setAllSnacks}/>
       }/>
       <Route exact path='/' element={
-        <VendingMachinesContainer
-          vendingMachines={allVendingMachines}
-          handleSnackButtonClick={updateInventory} />
+        <Home user={user}/>
+      }/>
+      <Route path="*" element={
+        <h1>404 not found</h1>
       }/>
     </Routes>
   )

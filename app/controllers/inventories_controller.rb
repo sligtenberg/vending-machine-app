@@ -1,4 +1,5 @@
 class InventoriesController < ApplicationController
+  
     def create
         inventory = Inventory.create!(inventory_params)
         render json: inventory, status: :created

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../Context/user';
 
-function LoginForm({ setUser }) {
+function LoginForm() {
   const [loginMode, setLoginMode] = useState(true)
+  const { setUser } = useContext(UserContext)
 
   function handleSubmit(e) {
     e.preventDefault()

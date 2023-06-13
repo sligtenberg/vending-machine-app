@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LoggedInNavBar from './LoggedInNavBar';
 import LoginForm from './LoginForm';
+import { UserContext } from '../Context/user';
 
-function NavBar({ user, setUser, setViewPersonalMachines }) {
+function NavBar({ setViewPersonalMachines }) {
+  const { user } = useContext(UserContext)
+  
   return (
     user ?
       <LoggedInNavBar
-        setUser={setUser}
         setViewPersonalMachines={setViewPersonalMachines}/> :
-      <LoginForm setUser={setUser}/>
+      <LoginForm />
   )
 }
 

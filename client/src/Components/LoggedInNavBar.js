@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom'
+import { UserContext } from '../Context/user';
 
-function LoggedInNavBar({ setUser }) {
+function LoggedInNavBar() {
+  const { setUser } = useContext(UserContext)
+
   function handleLogout() {
     fetch('/logout', {method: 'DELETE'})
       .then(() => setUser(null));      
@@ -9,6 +12,9 @@ function LoggedInNavBar({ setUser }) {
 
   return (
     <nav>
+      <NavLink to='/home'>
+        <button>Home</button>  
+      </NavLink>
       <NavLink to='/shop'>
         <button>Shop</button>
       </NavLink>

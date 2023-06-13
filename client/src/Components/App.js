@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import MainPage from './MainPage';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../Context/user';
 import NavBar from './NavBar';
+import MainPage from './MainPage';
 
 function App() {
-  const [user, setUser] = useState(null)
+  const { user, setUser } = useContext(UserContext)
   const [errors, setErrors] = useState([])
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
   return (
     <div>
       <h1>Stevo's Vending Machines</h1>
-      <NavBar user={user} setUser={setUser} />
+      <NavBar />
       {user ?
         <MainPage user={user} /> :
         <h2>{errors.errors}</h2>}
