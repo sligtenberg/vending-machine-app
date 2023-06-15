@@ -1,8 +1,5 @@
 class SnackSerializer < ActiveModel::Serializer
-  attributes :id, :name, :price, :in_use
+  attributes :id, :name, :price
 
-  def in_use
-    self.object.inventories.length > 0
-  end
-
+  has_many :vending_machines
 end

@@ -16,7 +16,7 @@ function App() {
         rspns.json().then(setErrors)
       }
     });
-  }, []);
+  }, [setUser])  // added the setUser dependency because react asked me to ??
 
   return (
     <div>
