@@ -1,7 +1,7 @@
 import React from 'react';
 import VendingMachineCard from './VendingMachineCard';
 
-function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick, deleteVendingMachine }) {
+function VendingMachinesContainer({ vendingMachines, updateInventory, handleSnackButtonClick, deleteVendingMachine }) {
   
   const vendingMachineCards = vendingMachines
     .map(vendingMachine =>
@@ -9,7 +9,8 @@ function VendingMachinesContainer({ vendingMachines, handleSnackButtonClick, del
         key={vendingMachine.id}
         vendingMachine={vendingMachine} 
         handleSnackButtonClick={handleSnackButtonClick}
-        deleteVendingMachine={deleteVendingMachine}/>
+        deleteVendingMachine={deleteVendingMachine}
+        updateInventory={updateInventory}/>
     )
 
   return (

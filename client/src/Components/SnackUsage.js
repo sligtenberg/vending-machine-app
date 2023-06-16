@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ReactDom from "react-dom";
 
-export const SnackUsage = ({ setShowSnackUsage, snackName, vendingMachines }) => {
+function SnackUsage({ setShowSnackUsage, snackName, vendingMachines }) {
   // close the modal when clicking outside the modal.
   const modalRef = useRef();
   const closeSnackUsage = (e) => {
@@ -10,16 +10,18 @@ export const SnackUsage = ({ setShowSnackUsage, snackName, vendingMachines }) =>
     }
   };
 
-  const vendingMachineList = vendingMachines.map(vendingMachine => <li>{vendingMachine.name}</li>)
+  const vendingMachineList = vendingMachines.map(vendingMachine => <li key={vendingMachine.id}>{vendingMachine.name}</li>)
 
   //render the modal JSX in the portal div.
   return ReactDom.createPortal(
     <div className="container" ref={modalRef} onClick={closeSnackUsage}>
       <div className="modal">
-        <h4>{`${snackName} is used by the following vending machines:`}</h4>
+        <h4>{`${snackName} is sold by:`}</h4>
         <ul>{vendingMachineList}</ul>
       </div>
     </div>,
-    document.getElementById("portal")
+    document.getElementById("snackPortal")
   );
 };
+
+export default SnackUsage

@@ -150,7 +150,8 @@ function MainPage() {
           <VendingMachinesContainer
             vendingMachines={userVendingMachines}
             deleteVendingMachine={deleteVendingMachine}
-            handleSnackButtonClick={deleteInventory} />
+            handleSnackButtonClick={deleteInventory}
+            updateInventory={updateInventory} />
           <NewVendingMachineForm
             createVendingMachine={createVendingMachine}/>
         </div>

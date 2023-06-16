@@ -9,7 +9,7 @@ function ManageSnacks({ allSnacks, setAllSnacks }) {
   const snackCards = allSnacks.map(snack => 
     <SnackCard className='snack-card'
       key={snack.id}
-      snack={snack}
+      inventory={snack}
       handleButtonClick={handleDeleteSnack}/>)
 
   // create a new snack

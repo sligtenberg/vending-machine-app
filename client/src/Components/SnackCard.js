@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
-import { SnackUsage } from './SnackUsage'
+import SnackUsage from './SnackUsage'
+import UpdateInventory from './UpdateInventory';
 
-function SnackCard ({ snack, handleButtonClick }) {
+function SnackCard ({ inventory, updateInventory, handleButtonClick }) {
   const path = useLocation().pathname
   const [showSnackUsage, setShowSnackUsage] = useState(false);
+  const [showUpdateInventory, setShowUpdateInventory] = useState(false);
 
   function purchaseSnack() {
-    const newInventory = {...snack}
+    const newInventory = {...inventory}
     newInventory.quantity -= 1
     handleButtonClick(newInventory)
   }
 
   const usedByBtn = () => {
-    if (snack.vending_machines.length) {
+    if (inventory.vending_machines.length) {
       return <button onClick={() => setShowSnackUsage(true)}>Used By:</button>
-    } return <button onClick={() => handleButtonClick(snack.id)}>Delete</button>
+    } return <button onClick={() => handleButtonClick(inventory.id)}>Delete</button>
   }
 
   const button = () => {
@@ -23,7 +25,12 @@ function SnackCard ({ snack, handleButtonClick }) {
       case '/shop':
         return <button onClick={purchaseSnack}>Purchase</button>
       case '/manage_vending_machines':
-        return <button onClick={() => handleButtonClick(snack)}>Remove</button>
+        return (
+          <div>
+            <button onClick={() => setShowUpdateInventory(true)}>Edit</button>
+            <button onClick={() => handleButtonClick(inventory)}>X</button>
+          </div>
+        )
       default:
         return usedByBtn()
     }
@@ -31,11 +38,22 @@ function SnackCard ({ snack, handleButtonClick }) {
 
   return (
     <div className='snack-card'>
-      {snack.name}
-      {snack.quantity || snack.quantity === 0 ? ` (${snack.quantity})` : null}<br/>
-      ${snack.price.toFixed(2)}<br/>
+      {inventory.name}
+      {inventory.quantity || inventory.quantity === 0 ? ` (${inventory.quantity})` : null}<br/>
+      ${inventory.price.toFixed(2)}<br/>
       {button()}
-      {showSnackUsage ? <SnackUsage setShowSnackUsage={setShowSnackUsage} snackName={snack.name} vendingMachines={snack.vending_machines}/> : null}
+      {showSnackUsage ?
+        <SnackUsage
+          setShowSnackUsage={setShowSnackUsage}
+          snackName={inventory.name}
+          vendingMachines={inventory.vending_machines}/> :
+        null}
+      {showUpdateInventory ?
+        <UpdateInventory 
+          inventory={inventory}
+          setShowUpdateInventory={setShowUpdateInventory}
+          updateInventory={updateInventory}/> :
+        null}
     </div>
   )
 }
