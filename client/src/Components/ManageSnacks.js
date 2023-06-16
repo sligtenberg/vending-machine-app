@@ -32,6 +32,7 @@ function ManageSnacks({ allSnacks, setAllSnacks }) {
     fetch(`/snacks/${snackToDeleteId}`, {method: 'DELETE'})
       .then(rspns => {
         if (rspns.ok) setAllSnacks(allSnacks.filter(snack => snack.id !== snackToDeleteId))
+        else alert("Something went wrong")
       })
   }
 

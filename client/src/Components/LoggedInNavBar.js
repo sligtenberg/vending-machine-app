@@ -7,7 +7,10 @@ function LoggedInNavBar() {
 
   function handleLogout() {
     fetch('/logout', {method: 'DELETE'})
-      .then(() => setUser(null));      
+      .then(rspns => {
+        if (rspns.ok) setUser(null)
+        else alert("Something went wrong")
+      })
   }
 
   return (

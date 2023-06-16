@@ -63,7 +63,7 @@ function MainPage() {
           modifyState(getter => getter.filter(vendingMachine => 
             vendingMachine.id !== vendingMachineId)
           )
-        }
+        } else alert("Something went wrong")
       })
   }
 
@@ -127,6 +127,7 @@ function MainPage() {
           } return vendingMachine  
         }))
       }
+      else alert("Something went wrong")
     })
   }
 
