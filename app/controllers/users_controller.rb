@@ -1,36 +1,30 @@
 class UsersController < ApplicationController
 
-    skip_before_action :authorize, only: [:create]
+  # don't need to be logged in to create a user
+  skip_before_action :authorize, only: [:create]
 
-    # create a new user and make a session for them
-    def create
-        user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
-    end
+  # create a new user and make a session for them
+  def create
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: user, status: :created
+  end
 
-    def show
-        user = find_user
-        # if user
-            render json: user
-        # else
-        #     render json: { errors: ["Log in or sign up to vend"] }, status: :unauthorized
-        # end
-    end
+  # automatically log in in the user has a session
+  def show
+    render json: @current_user
+  end
 
-    def vending_machines
-        render json: find_user.vending_machines
-    end
+  # GET request called by '/users/:id/vending_machines'
+  def vending_machines
+    render json: @current_user.vending_machines
+  end
 
-    private
+  private
 
-    def find_user
-        user = User.find_by(id: session[:user_id])
-    end
-
-    # strong params
-    def user_params
-        params.permit(:username, :password)
-    end
+  # strong params
+  def user_params
+    params.permit(:username, :password)
+  end
 
 end

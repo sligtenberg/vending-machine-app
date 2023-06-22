@@ -32,7 +32,7 @@ function UpdateInventory({ setShowUpdateInventory, inventory, updateInventory })
         <input type="submit"  />
       </form>
     </div>,
-    document.getElementById("updatePortal")
+    document.getElementById("portal")
   );
 };
 

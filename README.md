@@ -1,3 +1,29 @@
+# Stevo's Vending Machine App
+
+To run Stevo's Vending Machine app locally, clone this repository, and from the main directory, run the following commants:
+
+$ bundle install
+$ rails db:drop
+$ rails bd:create
+$ rails db:migrate
+$ rails db:seed
+
+Next, from the same directory, start the development server by running
+
+$ rails s
+
+Next, change directories into the client directory and run:
+
+$ npm install
+$ npm start
+
+This should open the app in the browser.
+
+# Using the app
+
+From the login page, either log in with an existing account, or create a new one. Once you are logged in, the home page has instructions for interacting with the app.
+
+
 # Project Template: React/Rails API
 
 ## Description

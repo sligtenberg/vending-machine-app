@@ -15,7 +15,7 @@ $ rails s
 Next, change directories into the client directory and run:
 
 $ npm install
-$ npm start --prefix client
+$ npm start
 
 This should open the app in the browser.
 

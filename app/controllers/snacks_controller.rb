@@ -10,8 +10,13 @@ class SnacksController < ApplicationController
     end
 
     def destroy
-        find_snack.destroy
+      snack = find_snack
+      unless snack.inventories.length > 0
+        snack.destroy
         head :no_content
+      else
+        render json: { errors: ["Snack is in use"] }, status: :unauthorized
+      end
     end
 
     private

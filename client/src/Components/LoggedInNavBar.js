@@ -27,9 +27,11 @@ function LoggedInNavBar() {
       <NavLink to='/manage_snacks'>
         <button>Manage Snacks</button>
       </NavLink>
-      <button onClick={handleLogout} className='float-right'>
-        Log Out
-      </button>
+      <NavLink to='/'>
+        <button onClick={handleLogout} className='float-right'>
+          Log Out
+        </button>
+      </NavLink>
     </nav>
   )
 }

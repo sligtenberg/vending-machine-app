@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
-import SnackUsage from './SnackUsage'
-import UpdateInventory from './UpdateInventory';
+import SnackUsage from './Modals/SnackUsage'
+import UpdateInventory from './Modals/UpdateInventory';
 
 function SnackCard ({ inventory, updateInventory, handleButtonClick }) {
   const path = useLocation().pathname
   const [showSnackUsage, setShowSnackUsage] = useState(false);
   const [showUpdateInventory, setShowUpdateInventory] = useState(false);
+
+  //console.log("from snack card: ", inventory)
 
   function purchaseSnack() {
     const newInventory = {...inventory}

@@ -7,7 +7,7 @@ class InventoriesController < ApplicationController
 
     def update
       inventory = find_inventory
-      inventory.update!(inventory_params)
+      inventory.update(inventory_params)
       render json: inventory
     end
 
@@ -19,7 +19,7 @@ class InventoriesController < ApplicationController
     private
 
     def find_inventory
-        Inventory.find(params[:id])
+        @current_user.inventories.find(params[:id])
     end
 
     # strong params

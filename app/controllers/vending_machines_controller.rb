@@ -5,24 +5,19 @@ class VendingMachinesController < ApplicationController
   end
 
   def create
-    vending_machine = VendingMachine.create!(vending_machine_params)
-    render json: vending_machine, status: :created
-end
+    render json: @current_user.vending_machines.create!(vending_machine_params), status: :created
+  end
 
-def destroy
-    find_vending_machine.destroy
+  def destroy
+    @current_user.vending_machines.find(params[:id]).destroy
     head :no_content
-end
+  end
 
-private
+  private
 
-def find_vending_machine
-    VendingMachine.find(params[:id])
-end
-
-# strong params
-def vending_machine_params
-    params.permit(:name, :user_id)
-end
+  # strong params
+  def vending_machine_params
+    params.permit(:name)
+  end
 
 end

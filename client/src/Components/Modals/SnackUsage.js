@@ -20,7 +20,7 @@ function SnackUsage({ setShowSnackUsage, snackName, vendingMachines }) {
         <ul>{vendingMachineList}</ul>
       </div>
     </div>,
-    document.getElementById("snackPortal")
+    document.getElementById("portal")
   );
 };
 
