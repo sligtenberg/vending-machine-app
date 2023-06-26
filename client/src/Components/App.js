@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../Context/user';
-import NavBar from './NavBar';
+import NavBar from './NavigationBar/NavBar';
 import MainPage from './MainPage';
 
 function App() {

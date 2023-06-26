@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # inventories routes
   resources :inventories, only: [:create, :destroy, :update]
+  get 'purchase/:id', to: 'inventories#purchase'
 
   # vending_machines routes
   resources :vending_machines, only: [:index, :create, :destroy]

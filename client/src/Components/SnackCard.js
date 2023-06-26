@@ -8,24 +8,21 @@ function SnackCard ({ inventory, updateInventory, handleButtonClick }) {
   const [showSnackUsage, setShowSnackUsage] = useState(false);
   const [showUpdateInventory, setShowUpdateInventory] = useState(false);
 
-  //console.log("from snack card: ", inventory)
-
-  function purchaseSnack() {
-    const newInventory = {...inventory}
-    newInventory.quantity -= 1
-    handleButtonClick(newInventory)
-  }
-
+  // in managa snacks, this button either allows a user to see which
+  // vending machines a snack is used in, or allows a user to delete a snack
   const usedByBtn = () => {
     if (inventory.vending_machines.length) {
       return <button onClick={() => setShowSnackUsage(true)}>Used By:</button>
     } return <button onClick={() => handleButtonClick(inventory.id)}>Delete</button>
   }
 
+  // in /shop this button purchases a snack
+  // in /manage_vending_machines_ this button allows a user to edit inventories
+  // in /manage_snacks, this button's use depends on the usedBy function
   const button = () => {
     switch (path) {
       case '/shop':
-        return <button onClick={purchaseSnack}>Purchase</button>
+        return <button onClick={() => handleButtonClick(inventory.id)}>Purchase</button>
       case '/manage_vending_machines':
         return (
           <div>

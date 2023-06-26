@@ -7,6 +7,7 @@ function UpdateInventory({ setShowUpdateInventory, inventory, updateInventory })
 
   const [newInventory, setNewInventory] = useState(inventory)
 
+  // close the modal by clicking outside of it
   const closeUpdateInventory = (e) => {
     if (e.target === modalRef.current) {
       setShowUpdateInventory(false);

@@ -131,6 +131,28 @@ function MainPage() {
     })
   }
 
+  // purchase a snack
+  // This is a get request to a custom route. In the future, this request will also transfer money
+  // from the purchaser to the vending machine, and the back end will need to verify this transaction
+  // before the purchase goes through. For now, any user can buy any snack for free.
+  function purchaseSnack(inventoryId) {
+    console.log(inventoryId)
+    fetch(`/purchase/${inventoryId}`)
+    .then(rspns => {
+      if (rspns.ok) {
+        rspns.json().then(updatedInventory => {
+          modifyState(getter => getter.map(vendingMachine => {
+            if (vendingMachine.id === updatedInventory.vending_machine_id) {
+              vendingMachine.inventories = vendingMachine.inventories.map(inventory => 
+                inventory.id === updatedInventory.id ? updatedInventory : inventory)
+              return vendingMachine
+            } return vendingMachine
+          }))
+        })
+      } else rspns.json().then(rspns => alert(rspns.errors))
+    })
+  }
+
   return (
     <Routes >
       <Route path='/home' element={
@@ -139,7 +161,7 @@ function MainPage() {
       <Route path='/shop' element={
         <VendingMachinesContainer
           vendingMachines={allVendingMachines}
-          handleSnackButtonClick={updateInventory} />
+          handleSnackButtonClick={purchaseSnack} />
       }/>
       <Route path='/manage_vending_machines' element={
         <div>

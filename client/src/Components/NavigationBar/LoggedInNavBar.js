@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom'
-import { UserContext } from '../Context/user';
+import { UserContext } from '../../Context/user';
 
 function LoggedInNavBar() {
   const { setUser } = useContext(UserContext)
