@@ -36,7 +36,7 @@ function MainPage() {
       if (rspns.ok) rspns.json().then(setAllSnacks)
       else rspns.json().then(console.log)
     })
-  }, [user.id]) // added the user.id dependency because react asked me to ??
+  }, [user.id])
 
   // create a vending machine
   function createVendingMachine(newName) {
