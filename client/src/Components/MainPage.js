@@ -44,8 +44,7 @@ function MainPage() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: newName,
-        user_id: user.id
+        name: newName
       })
     }).then(rspns => {
       if (rspns.ok) {
